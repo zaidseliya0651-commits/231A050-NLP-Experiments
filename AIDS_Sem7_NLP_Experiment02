@@ -3,8 +3,7 @@
   "nbformat_minor": 0,
   "metadata": {
     "colab": {
-      "provenance": [],
-      "include_colab_link": true
+      "provenance": []
     },
     "kernelspec": {
       "name": "python3",
@@ -17,1553 +16,59 @@
   "cells": [
     {
       "cell_type": "markdown",
-      "metadata": {
-        "id": "view-in-github",
-        "colab_type": "text"
-      },
       "source": [
-        "<a href=\"https://colab.research.google.com/github/zaidseliya0651-commits/231A050-NLP-Experiments/blob/main/AIDS_Sem7_NLP_Experiment02\" target=\"_parent\"><img src=\"https://colab.research.google.com/assets/colab-badge.svg\" alt=\"Open In Colab\"/></a>"
-      ]
+        "#Experiment no 7\n",
+        "date - 3 / 8 / 2026"
+      ],
+      "metadata": {
+        "id": "oUKV2bCB_gTT"
+      }
     },
     {
       "cell_type": "markdown",
       "source": [
-        "#NLP Expriment 2\n",
-        "Zaid Seliya\n",
-        "\n",
-        "242A050"
+        "#Part 2"
       ],
       "metadata": {
-        "id": "vB1J8pHsIZA1"
+        "id": "3VfK-jjgJuLr"
       }
     },
     {
       "cell_type": "code",
       "execution_count": null,
       "metadata": {
-        "id": "5sIet2zrHdyw"
-      },
-      "outputs": [],
-      "source": [
-        "import nltk\n",
-        "from nltk.corpus import twitter_samples\n",
-        "import matplotlib.pyplot as plt\n",
-        "import random\n",
-        "import pandas as pd"
-      ]
-    },
-    {
-      "cell_type": "code",
-      "source": [
-        "nltk.download('twitter_samples')"
-      ],
-      "metadata": {
-        "colab": {
-          "base_uri": "https://localhost:8080/",
-          "height": 283
-        },
-        "id": "6woEQ3DxHtEs",
-        "outputId": "0c1cdc95-a251-4d67-95dd-f39117eb3f12"
-      },
-      "execution_count": null,
-      "outputs": [
-        {
-          "output_type": "error",
-          "ename": "NameError",
-          "evalue": "name 'nltk' is not defined",
-          "traceback": [
-            "\u001b[0;31m---------------------------------------------------------------------------\u001b[0m",
-            "\u001b[0;31mNameError\u001b[0m                                 Traceback (most recent call last)",
-            "\u001b[0;32m/tmp/ipykernel_2863/3671764563.py\u001b[0m in \u001b[0;36m<cell line: 0>\u001b[0;34m()\u001b[0m\n\u001b[0;32m----> 1\u001b[0;31m \u001b[0mnltk\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0mdownload\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0;34m'twitter_samples'\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0m",
-            "\u001b[0;31mNameError\u001b[0m: name 'nltk' is not defined"
-          ]
-        }
-      ]
-    },
-    {
-      "cell_type": "code",
-      "source": [
-        "twitter_samples.fileids()"
-      ],
-      "metadata": {
         "colab": {
           "base_uri": "https://localhost:8080/"
         },
-        "id": "yn-s8BnBJe2W",
-        "outputId": "2f5f7365-f069-4071-fa5c-40455ade1ed0"
+        "id": "ZoQeP5RB_fma",
+        "outputId": "9d443106-9105-4e67-e327-f1d41eea9836"
       },
-      "execution_count": null,
-      "outputs": [
-        {
-          "output_type": "execute_result",
-          "data": {
-            "text/plain": [
-              "['negative_tweets.json', 'positive_tweets.json', 'tweets.20150430-223406.json']"
-            ]
-          },
-          "metadata": {},
-          "execution_count": 3
-        }
-      ]
-    },
-    {
-      "cell_type": "code",
-      "source": [
-        "all_positive_tweets = twitter_samples.strings('positive_tweets.json')\n",
-        "all_negative_tweets = twitter_samples.strings('negative_tweets.json')"
-      ],
-      "metadata": {
-        "id": "opRJLNr_IC3A"
-      },
-      "execution_count": null,
-      "outputs": []
-    },
-    {
-      "cell_type": "code",
-      "source": [
-        "print(f'Number of positive tweets: {len(all_positive_tweets)}')\n",
-        "print(f'Number of negative tweets: {len(all_negative_tweets)}')\n",
-        "print(\"Doug was here...\")\n",
-        "print('\\nThe type of all_positive_tweets is: ', type(all_positive_tweets))\n",
-        "print('The type of a tweet entry is: ', type(all_positive_tweets[0]))"
-      ],
-      "metadata": {
-        "colab": {
-          "base_uri": "https://localhost:8080/"
-        },
-        "id": "ImPr9DC_IKfO",
-        "outputId": "ded089b0-546b-4a17-89df-41036689d161"
-      },
-      "execution_count": null,
       "outputs": [
         {
           "output_type": "stream",
           "name": "stdout",
           "text": [
-            "Number of positive tweets: 5000\n",
-            "Number of negative tweets: 5000\n",
-            "Doug was here...\n",
-            "\n",
-            "The type of all_positive_tweets is:  <class 'list'>\n",
-            "The type of a tweet entry is:  <class 'str'>\n"
+            "Name: Aryan Pilwalkar UIN:231A016\n"
           ]
-        }
-      ]
-    },
-    {
-      "cell_type": "code",
-      "source": [
-        "all_positive_tweets_df = pd.DataFrame(all_positive_tweets, columns=[\"Tweets\"])\n",
-        "all_negative_tweets_df = pd.DataFrame(all_negative_tweets, columns=[\"Tweets\"])"
-      ],
-      "metadata": {
-        "id": "hvhxm1KhKJmy"
-      },
-      "execution_count": null,
-      "outputs": []
-    },
-    {
-      "cell_type": "code",
-      "source": [
-        "all_positive_tweets_df.head()"
-      ],
-      "metadata": {
-        "colab": {
-          "base_uri": "https://localhost:8080/",
-          "height": 206
         },
-        "id": "crRREnfEKhDW",
-        "outputId": "c0974f6b-eb23-4dce-a2e8-36853a479c7a"
-      },
-      "execution_count": null,
-      "outputs": [
-        {
-          "output_type": "execute_result",
-          "data": {
-            "text/plain": [
-              "                                              Tweets\n",
-              "0  #FollowFriday @France_Inte @PKuchly57 @Milipol...\n",
-              "1  @Lamb2ja Hey James! How odd :/ Please call our...\n",
-              "2  @DespiteOfficial we had a listen last night :)...\n",
-              "3                               @97sides CONGRATS :)\n",
-              "4  yeaaaah yippppy!!!  my accnt verified rqst has..."
-            ],
-            "text/html": [
-              "\n",
-              "  <div id=\"df-ccb4e46b-5746-489c-81a4-35e0ad39500b\" class=\"colab-df-container\">\n",
-              "    <div>\n",
-              "<style scoped>\n",
-              "    .dataframe tbody tr th:only-of-type {\n",
-              "        vertical-align: middle;\n",
-              "    }\n",
-              "\n",
-              "    .dataframe tbody tr th {\n",
-              "        vertical-align: top;\n",
-              "    }\n",
-              "\n",
-              "    .dataframe thead th {\n",
-              "        text-align: right;\n",
-              "    }\n",
-              "</style>\n",
-              "<table border=\"1\" class=\"dataframe\">\n",
-              "  <thead>\n",
-              "    <tr style=\"text-align: right;\">\n",
-              "      <th></th>\n",
-              "      <th>Tweets</th>\n",
-              "    </tr>\n",
-              "  </thead>\n",
-              "  <tbody>\n",
-              "    <tr>\n",
-              "      <th>0</th>\n",
-              "      <td>#FollowFriday @France_Inte @PKuchly57 @Milipol...</td>\n",
-              "    </tr>\n",
-              "    <tr>\n",
-              "      <th>1</th>\n",
-              "      <td>@Lamb2ja Hey James! How odd :/ Please call our...</td>\n",
-              "    </tr>\n",
-              "    <tr>\n",
-              "      <th>2</th>\n",
-              "      <td>@DespiteOfficial we had a listen last night :)...</td>\n",
-              "    </tr>\n",
-              "    <tr>\n",
-              "      <th>3</th>\n",
-              "      <td>@97sides CONGRATS :)</td>\n",
-              "    </tr>\n",
-              "    <tr>\n",
-              "      <th>4</th>\n",
-              "      <td>yeaaaah yippppy!!!  my accnt verified rqst has...</td>\n",
-              "    </tr>\n",
-              "  </tbody>\n",
-              "</table>\n",
-              "</div>\n",
-              "    <div class=\"colab-df-buttons\">\n",
-              "\n",
-              "  <div class=\"colab-df-container\">\n",
-              "    <button class=\"colab-df-convert\" onclick=\"convertToInteractive('df-ccb4e46b-5746-489c-81a4-35e0ad39500b')\"\n",
-              "            title=\"Convert this dataframe to an interactive table.\"\n",
-              "            style=\"display:none;\">\n",
-              "\n",
-              "  <svg xmlns=\"http://www.w3.org/2000/svg\" height=\"24px\" viewBox=\"0 -960 960 960\">\n",
-              "    <path d=\"M120-120v-720h720v720H120Zm60-500h600v-160H180v160Zm220 220h160v-160H400v160Zm0 220h160v-160H400v160ZM180-400h160v-160H180v160Zm440 0h160v-160H620v160ZM180-180h160v-160H180v160Zm440 0h160v-160H620v160Z\"/>\n",
-              "  </svg>\n",
-              "    </button>\n",
-              "\n",
-              "  <style>\n",
-              "    .colab-df-container {\n",
-              "      display:flex;\n",
-              "      gap: 12px;\n",
-              "    }\n",
-              "\n",
-              "    .colab-df-convert {\n",
-              "      background-color: #E8F0FE;\n",
-              "      border: none;\n",
-              "      border-radius: 50%;\n",
-              "      cursor: pointer;\n",
-              "      display: none;\n",
-              "      fill: #1967D2;\n",
-              "      height: 32px;\n",
-              "      padding: 0 0 0 0;\n",
-              "      width: 32px;\n",
-              "    }\n",
-              "\n",
-              "    .colab-df-convert:hover {\n",
-              "      background-color: #E2EBFA;\n",
-              "      box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);\n",
-              "      fill: #174EA6;\n",
-              "    }\n",
-              "\n",
-              "    .colab-df-buttons div {\n",
-              "      margin-bottom: 4px;\n",
-              "    }\n",
-              "\n",
-              "    [theme=dark] .colab-df-convert {\n",
-              "      background-color: #3B4455;\n",
-              "      fill: #D2E3FC;\n",
-              "    }\n",
-              "\n",
-              "    [theme=dark] .colab-df-convert:hover {\n",
-              "      background-color: #434B5C;\n",
-              "      box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);\n",
-              "      filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));\n",
-              "      fill: #FFFFFF;\n",
-              "    }\n",
-              "  </style>\n",
-              "\n",
-              "    <script>\n",
-              "      const buttonEl =\n",
-              "        document.querySelector('#df-ccb4e46b-5746-489c-81a4-35e0ad39500b button.colab-df-convert');\n",
-              "      buttonEl.style.display =\n",
-              "        google.colab.kernel.accessAllowed ? 'block' : 'none';\n",
-              "\n",
-              "      async function convertToInteractive(key) {\n",
-              "        const element = document.querySelector('#df-ccb4e46b-5746-489c-81a4-35e0ad39500b');\n",
-              "        const dataTable =\n",
-              "          await google.colab.kernel.invokeFunction('convertToInteractive',\n",
-              "                                                    [key], {});\n",
-              "        if (!dataTable) return;\n",
-              "\n",
-              "        const docLinkHtml = 'Like what you see? Visit the ' +\n",
-              "          '<a target=\"_blank\" href=https://colab.research.google.com/notebooks/data_table.ipynb>data table notebook</a>'\n",
-              "          + ' to learn more about interactive tables.';\n",
-              "        element.innerHTML = '';\n",
-              "        dataTable['output_type'] = 'display_data';\n",
-              "        await google.colab.output.renderOutput(dataTable, element);\n",
-              "        const docLink = document.createElement('div');\n",
-              "        docLink.innerHTML = docLinkHtml;\n",
-              "        element.appendChild(docLink);\n",
-              "      }\n",
-              "    </script>\n",
-              "  </div>\n",
-              "\n",
-              "\n",
-              "    </div>\n",
-              "  </div>\n"
-            ],
-            "application/vnd.google.colaboratory.intrinsic+json": {
-              "type": "dataframe",
-              "variable_name": "all_positive_tweets_df",
-              "summary": "{\n  \"name\": \"all_positive_tweets_df\",\n  \"rows\": 5000,\n  \"fields\": [\n    {\n      \"column\": \"Tweets\",\n      \"properties\": {\n        \"dtype\": \"string\",\n        \"num_unique_values\": 5000,\n        \"samples\": [\n          \"@Sanza_T @LeratoTmohale Does the bag do the job Sanza?  :-)\",\n          \"@WeAlwaysChillin This sounds nice :D\",\n          \"@wishinguponstar We couldn't have said it better ourselves, Kelly! So glad you're enjoying your nibbles :)\"\n        ],\n        \"semantic_type\": \"\",\n        \"description\": \"\"\n      }\n    }\n  ]\n}"
-            }
-          },
-          "metadata": {},
-          "execution_count": 7
-        }
-      ]
-    },
-    {
-      "cell_type": "code",
-      "source": [
-        "all_negative_tweets_df.head()"
-      ],
-      "metadata": {
-        "colab": {
-          "base_uri": "https://localhost:8080/",
-          "height": 206
-        },
-        "id": "CL5MxC5gKMaK",
-        "outputId": "047672f3-90d8-46e4-c991-5c7c22426db0"
-      },
-      "execution_count": null,
-      "outputs": [
-        {
-          "output_type": "execute_result",
-          "data": {
-            "text/plain": [
-              "                                              Tweets\n",
-              "0                                hopeless for tmr :(\n",
-              "1  Everything in the kids section of IKEA is so c...\n",
-              "2  @Hegelbon That heart sliding into the waste ba...\n",
-              "3  “@ketchBurning: I hate Japanese call him \"bani...\n",
-              "4           Dang starting next week I have \"work\" :("
-            ],
-            "text/html": [
-              "\n",
-              "  <div id=\"df-bc8d70aa-28ef-468d-8fec-f1a3663c1041\" class=\"colab-df-container\">\n",
-              "    <div>\n",
-              "<style scoped>\n",
-              "    .dataframe tbody tr th:only-of-type {\n",
-              "        vertical-align: middle;\n",
-              "    }\n",
-              "\n",
-              "    .dataframe tbody tr th {\n",
-              "        vertical-align: top;\n",
-              "    }\n",
-              "\n",
-              "    .dataframe thead th {\n",
-              "        text-align: right;\n",
-              "    }\n",
-              "</style>\n",
-              "<table border=\"1\" class=\"dataframe\">\n",
-              "  <thead>\n",
-              "    <tr style=\"text-align: right;\">\n",
-              "      <th></th>\n",
-              "      <th>Tweets</th>\n",
-              "    </tr>\n",
-              "  </thead>\n",
-              "  <tbody>\n",
-              "    <tr>\n",
-              "      <th>0</th>\n",
-              "      <td>hopeless for tmr :(</td>\n",
-              "    </tr>\n",
-              "    <tr>\n",
-              "      <th>1</th>\n",
-              "      <td>Everything in the kids section of IKEA is so c...</td>\n",
-              "    </tr>\n",
-              "    <tr>\n",
-              "      <th>2</th>\n",
-              "      <td>@Hegelbon That heart sliding into the waste ba...</td>\n",
-              "    </tr>\n",
-              "    <tr>\n",
-              "      <th>3</th>\n",
-              "      <td>“@ketchBurning: I hate Japanese call him \"bani...</td>\n",
-              "    </tr>\n",
-              "    <tr>\n",
-              "      <th>4</th>\n",
-              "      <td>Dang starting next week I have \"work\" :(</td>\n",
-              "    </tr>\n",
-              "  </tbody>\n",
-              "</table>\n",
-              "</div>\n",
-              "    <div class=\"colab-df-buttons\">\n",
-              "\n",
-              "  <div class=\"colab-df-container\">\n",
-              "    <button class=\"colab-df-convert\" onclick=\"convertToInteractive('df-bc8d70aa-28ef-468d-8fec-f1a3663c1041')\"\n",
-              "            title=\"Convert this dataframe to an interactive table.\"\n",
-              "            style=\"display:none;\">\n",
-              "\n",
-              "  <svg xmlns=\"http://www.w3.org/2000/svg\" height=\"24px\" viewBox=\"0 -960 960 960\">\n",
-              "    <path d=\"M120-120v-720h720v720H120Zm60-500h600v-160H180v160Zm220 220h160v-160H400v160Zm0 220h160v-160H400v160ZM180-400h160v-160H180v160Zm440 0h160v-160H620v160ZM180-180h160v-160H180v160Zm440 0h160v-160H620v160Z\"/>\n",
-              "  </svg>\n",
-              "    </button>\n",
-              "\n",
-              "  <style>\n",
-              "    .colab-df-container {\n",
-              "      display:flex;\n",
-              "      gap: 12px;\n",
-              "    }\n",
-              "\n",
-              "    .colab-df-convert {\n",
-              "      background-color: #E8F0FE;\n",
-              "      border: none;\n",
-              "      border-radius: 50%;\n",
-              "      cursor: pointer;\n",
-              "      display: none;\n",
-              "      fill: #1967D2;\n",
-              "      height: 32px;\n",
-              "      padding: 0 0 0 0;\n",
-              "      width: 32px;\n",
-              "    }\n",
-              "\n",
-              "    .colab-df-convert:hover {\n",
-              "      background-color: #E2EBFA;\n",
-              "      box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);\n",
-              "      fill: #174EA6;\n",
-              "    }\n",
-              "\n",
-              "    .colab-df-buttons div {\n",
-              "      margin-bottom: 4px;\n",
-              "    }\n",
-              "\n",
-              "    [theme=dark] .colab-df-convert {\n",
-              "      background-color: #3B4455;\n",
-              "      fill: #D2E3FC;\n",
-              "    }\n",
-              "\n",
-              "    [theme=dark] .colab-df-convert:hover {\n",
-              "      background-color: #434B5C;\n",
-              "      box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);\n",
-              "      filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));\n",
-              "      fill: #FFFFFF;\n",
-              "    }\n",
-              "  </style>\n",
-              "\n",
-              "    <script>\n",
-              "      const buttonEl =\n",
-              "        document.querySelector('#df-bc8d70aa-28ef-468d-8fec-f1a3663c1041 button.colab-df-convert');\n",
-              "      buttonEl.style.display =\n",
-              "        google.colab.kernel.accessAllowed ? 'block' : 'none';\n",
-              "\n",
-              "      async function convertToInteractive(key) {\n",
-              "        const element = document.querySelector('#df-bc8d70aa-28ef-468d-8fec-f1a3663c1041');\n",
-              "        const dataTable =\n",
-              "          await google.colab.kernel.invokeFunction('convertToInteractive',\n",
-              "                                                    [key], {});\n",
-              "        if (!dataTable) return;\n",
-              "\n",
-              "        const docLinkHtml = 'Like what you see? Visit the ' +\n",
-              "          '<a target=\"_blank\" href=https://colab.research.google.com/notebooks/data_table.ipynb>data table notebook</a>'\n",
-              "          + ' to learn more about interactive tables.';\n",
-              "        element.innerHTML = '';\n",
-              "        dataTable['output_type'] = 'display_data';\n",
-              "        await google.colab.output.renderOutput(dataTable, element);\n",
-              "        const docLink = document.createElement('div');\n",
-              "        docLink.innerHTML = docLinkHtml;\n",
-              "        element.appendChild(docLink);\n",
-              "      }\n",
-              "    </script>\n",
-              "  </div>\n",
-              "\n",
-              "\n",
-              "    </div>\n",
-              "  </div>\n"
-            ],
-            "application/vnd.google.colaboratory.intrinsic+json": {
-              "type": "dataframe",
-              "variable_name": "all_negative_tweets_df",
-              "summary": "{\n  \"name\": \"all_negative_tweets_df\",\n  \"rows\": 5000,\n  \"fields\": [\n    {\n      \"column\": \"Tweets\",\n      \"properties\": {\n        \"dtype\": \"string\",\n        \"num_unique_values\": 5000,\n        \"samples\": [\n          \"im so tempted to stream to screenshot sjkaos :(((( no\",\n          \"@yearsandyears I wanted to go but I don't live near any of these places at all :((\",\n          \"I wish my Parents would live forever. :(\"\n        ],\n        \"semantic_type\": \"\",\n        \"description\": \"\"\n      }\n    }\n  ]\n}"
-            }
-          },
-          "metadata": {},
-          "execution_count": 8
-        }
-      ]
-    },
-    {
-      "cell_type": "code",
-      "source": [
-        "all_positive_tweets_df.shape"
-      ],
-      "metadata": {
-        "colab": {
-          "base_uri": "https://localhost:8080/"
-        },
-        "id": "04-hG5AeKr98",
-        "outputId": "72e409b4-f596-43e3-f3b2-a9cb9393242a"
-      },
-      "execution_count": null,
-      "outputs": [
-        {
-          "output_type": "execute_result",
-          "data": {
-            "text/plain": [
-              "(5000, 1)"
-            ]
-          },
-          "metadata": {},
-          "execution_count": 9
-        }
-      ]
-    },
-    {
-      "cell_type": "code",
-      "source": [
-        "all_negative_tweets_df.shape"
-      ],
-      "metadata": {
-        "colab": {
-          "base_uri": "https://localhost:8080/"
-        },
-        "id": "WdVTAAC4Kvpz",
-        "outputId": "bc3ac5ed-9add-42b5-bb1a-a4bfcbac937b"
-      },
-      "execution_count": null,
-      "outputs": [
-        {
-          "output_type": "execute_result",
-          "data": {
-            "text/plain": [
-              "(5000, 1)"
-            ]
-          },
-          "metadata": {},
-          "execution_count": 10
-        }
-      ]
-    },
-    {
-      "cell_type": "code",
-      "source": [
-        "all_positive_tweets_df[\"Sentiment\"] = \"Positive\"\n",
-        "all_negative_tweets_df[\"Sentiment\"] = \"Negative\""
-      ],
-      "metadata": {
-        "id": "2reM8Ij_Lj5D"
-      },
-      "execution_count": null,
-      "outputs": []
-    },
-    {
-      "cell_type": "code",
-      "source": [
-        "all_positive_tweets_df.head()"
-      ],
-      "metadata": {
-        "colab": {
-          "base_uri": "https://localhost:8080/",
-          "height": 206
-        },
-        "outputId": "d586517c-2e74-4c0a-cef1-8f16ee78a2f7",
-        "id": "KW5SAWYRMFcl"
-      },
-      "execution_count": null,
-      "outputs": [
-        {
-          "output_type": "execute_result",
-          "data": {
-            "text/plain": [
-              "                                              Tweets Sentiment\n",
-              "0  #FollowFriday @France_Inte @PKuchly57 @Milipol...  Positive\n",
-              "1  @Lamb2ja Hey James! How odd :/ Please call our...  Positive\n",
-              "2  @DespiteOfficial we had a listen last night :)...  Positive\n",
-              "3                               @97sides CONGRATS :)  Positive\n",
-              "4  yeaaaah yippppy!!!  my accnt verified rqst has...  Positive"
-            ],
-            "text/html": [
-              "\n",
-              "  <div id=\"df-e733880e-1f7b-495c-abb1-e24a781e573f\" class=\"colab-df-container\">\n",
-              "    <div>\n",
-              "<style scoped>\n",
-              "    .dataframe tbody tr th:only-of-type {\n",
-              "        vertical-align: middle;\n",
-              "    }\n",
-              "\n",
-              "    .dataframe tbody tr th {\n",
-              "        vertical-align: top;\n",
-              "    }\n",
-              "\n",
-              "    .dataframe thead th {\n",
-              "        text-align: right;\n",
-              "    }\n",
-              "</style>\n",
-              "<table border=\"1\" class=\"dataframe\">\n",
-              "  <thead>\n",
-              "    <tr style=\"text-align: right;\">\n",
-              "      <th></th>\n",
-              "      <th>Tweets</th>\n",
-              "      <th>Sentiment</th>\n",
-              "    </tr>\n",
-              "  </thead>\n",
-              "  <tbody>\n",
-              "    <tr>\n",
-              "      <th>0</th>\n",
-              "      <td>#FollowFriday @France_Inte @PKuchly57 @Milipol...</td>\n",
-              "      <td>Positive</td>\n",
-              "    </tr>\n",
-              "    <tr>\n",
-              "      <th>1</th>\n",
-              "      <td>@Lamb2ja Hey James! How odd :/ Please call our...</td>\n",
-              "      <td>Positive</td>\n",
-              "    </tr>\n",
-              "    <tr>\n",
-              "      <th>2</th>\n",
-              "      <td>@DespiteOfficial we had a listen last night :)...</td>\n",
-              "      <td>Positive</td>\n",
-              "    </tr>\n",
-              "    <tr>\n",
-              "      <th>3</th>\n",
-              "      <td>@97sides CONGRATS :)</td>\n",
-              "      <td>Positive</td>\n",
-              "    </tr>\n",
-              "    <tr>\n",
-              "      <th>4</th>\n",
-              "      <td>yeaaaah yippppy!!!  my accnt verified rqst has...</td>\n",
-              "      <td>Positive</td>\n",
-              "    </tr>\n",
-              "  </tbody>\n",
-              "</table>\n",
-              "</div>\n",
-              "    <div class=\"colab-df-buttons\">\n",
-              "\n",
-              "  <div class=\"colab-df-container\">\n",
-              "    <button class=\"colab-df-convert\" onclick=\"convertToInteractive('df-e733880e-1f7b-495c-abb1-e24a781e573f')\"\n",
-              "            title=\"Convert this dataframe to an interactive table.\"\n",
-              "            style=\"display:none;\">\n",
-              "\n",
-              "  <svg xmlns=\"http://www.w3.org/2000/svg\" height=\"24px\" viewBox=\"0 -960 960 960\">\n",
-              "    <path d=\"M120-120v-720h720v720H120Zm60-500h600v-160H180v160Zm220 220h160v-160H400v160Zm0 220h160v-160H400v160ZM180-400h160v-160H180v160Zm440 0h160v-160H620v160ZM180-180h160v-160H180v160Zm440 0h160v-160H620v160Z\"/>\n",
-              "  </svg>\n",
-              "    </button>\n",
-              "\n",
-              "  <style>\n",
-              "    .colab-df-container {\n",
-              "      display:flex;\n",
-              "      gap: 12px;\n",
-              "    }\n",
-              "\n",
-              "    .colab-df-convert {\n",
-              "      background-color: #E8F0FE;\n",
-              "      border: none;\n",
-              "      border-radius: 50%;\n",
-              "      cursor: pointer;\n",
-              "      display: none;\n",
-              "      fill: #1967D2;\n",
-              "      height: 32px;\n",
-              "      padding: 0 0 0 0;\n",
-              "      width: 32px;\n",
-              "    }\n",
-              "\n",
-              "    .colab-df-convert:hover {\n",
-              "      background-color: #E2EBFA;\n",
-              "      box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);\n",
-              "      fill: #174EA6;\n",
-              "    }\n",
-              "\n",
-              "    .colab-df-buttons div {\n",
-              "      margin-bottom: 4px;\n",
-              "    }\n",
-              "\n",
-              "    [theme=dark] .colab-df-convert {\n",
-              "      background-color: #3B4455;\n",
-              "      fill: #D2E3FC;\n",
-              "    }\n",
-              "\n",
-              "    [theme=dark] .colab-df-convert:hover {\n",
-              "      background-color: #434B5C;\n",
-              "      box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);\n",
-              "      filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));\n",
-              "      fill: #FFFFFF;\n",
-              "    }\n",
-              "  </style>\n",
-              "\n",
-              "    <script>\n",
-              "      const buttonEl =\n",
-              "        document.querySelector('#df-e733880e-1f7b-495c-abb1-e24a781e573f button.colab-df-convert');\n",
-              "      buttonEl.style.display =\n",
-              "        google.colab.kernel.accessAllowed ? 'block' : 'none';\n",
-              "\n",
-              "      async function convertToInteractive(key) {\n",
-              "        const element = document.querySelector('#df-e733880e-1f7b-495c-abb1-e24a781e573f');\n",
-              "        const dataTable =\n",
-              "          await google.colab.kernel.invokeFunction('convertToInteractive',\n",
-              "                                                    [key], {});\n",
-              "        if (!dataTable) return;\n",
-              "\n",
-              "        const docLinkHtml = 'Like what you see? Visit the ' +\n",
-              "          '<a target=\"_blank\" href=https://colab.research.google.com/notebooks/data_table.ipynb>data table notebook</a>'\n",
-              "          + ' to learn more about interactive tables.';\n",
-              "        element.innerHTML = '';\n",
-              "        dataTable['output_type'] = 'display_data';\n",
-              "        await google.colab.output.renderOutput(dataTable, element);\n",
-              "        const docLink = document.createElement('div');\n",
-              "        docLink.innerHTML = docLinkHtml;\n",
-              "        element.appendChild(docLink);\n",
-              "      }\n",
-              "    </script>\n",
-              "  </div>\n",
-              "\n",
-              "\n",
-              "    </div>\n",
-              "  </div>\n"
-            ],
-            "application/vnd.google.colaboratory.intrinsic+json": {
-              "type": "dataframe",
-              "variable_name": "all_positive_tweets_df",
-              "summary": "{\n  \"name\": \"all_positive_tweets_df\",\n  \"rows\": 5000,\n  \"fields\": [\n    {\n      \"column\": \"Tweets\",\n      \"properties\": {\n        \"dtype\": \"string\",\n        \"num_unique_values\": 5000,\n        \"samples\": [\n          \"@Sanza_T @LeratoTmohale Does the bag do the job Sanza?  :-)\",\n          \"@WeAlwaysChillin This sounds nice :D\",\n          \"@wishinguponstar We couldn't have said it better ourselves, Kelly! So glad you're enjoying your nibbles :)\"\n        ],\n        \"semantic_type\": \"\",\n        \"description\": \"\"\n      }\n    },\n    {\n      \"column\": \"Sentiment\",\n      \"properties\": {\n        \"dtype\": \"category\",\n        \"num_unique_values\": 1,\n        \"samples\": [\n          \"Positive\"\n        ],\n        \"semantic_type\": \"\",\n        \"description\": \"\"\n      }\n    }\n  ]\n}"
-            }
-          },
-          "metadata": {},
-          "execution_count": 12
-        }
-      ]
-    },
-    {
-      "cell_type": "code",
-      "source": [
-        "all_negative_tweets_df.head()"
-      ],
-      "metadata": {
-        "colab": {
-          "base_uri": "https://localhost:8080/",
-          "height": 206
-        },
-        "outputId": "02a16c79-5261-453e-ac99-5a2460d39870",
-        "id": "rn4BNgl5MEow"
-      },
-      "execution_count": null,
-      "outputs": [
-        {
-          "output_type": "execute_result",
-          "data": {
-            "text/plain": [
-              "                                              Tweets Sentiment\n",
-              "0                                hopeless for tmr :(  Negative\n",
-              "1  Everything in the kids section of IKEA is so c...  Negative\n",
-              "2  @Hegelbon That heart sliding into the waste ba...  Negative\n",
-              "3  “@ketchBurning: I hate Japanese call him \"bani...  Negative\n",
-              "4           Dang starting next week I have \"work\" :(  Negative"
-            ],
-            "text/html": [
-              "\n",
-              "  <div id=\"df-e836322b-9911-49eb-8582-f485660a288a\" class=\"colab-df-container\">\n",
-              "    <div>\n",
-              "<style scoped>\n",
-              "    .dataframe tbody tr th:only-of-type {\n",
-              "        vertical-align: middle;\n",
-              "    }\n",
-              "\n",
-              "    .dataframe tbody tr th {\n",
-              "        vertical-align: top;\n",
-              "    }\n",
-              "\n",
-              "    .dataframe thead th {\n",
-              "        text-align: right;\n",
-              "    }\n",
-              "</style>\n",
-              "<table border=\"1\" class=\"dataframe\">\n",
-              "  <thead>\n",
-              "    <tr style=\"text-align: right;\">\n",
-              "      <th></th>\n",
-              "      <th>Tweets</th>\n",
-              "      <th>Sentiment</th>\n",
-              "    </tr>\n",
-              "  </thead>\n",
-              "  <tbody>\n",
-              "    <tr>\n",
-              "      <th>0</th>\n",
-              "      <td>hopeless for tmr :(</td>\n",
-              "      <td>Negative</td>\n",
-              "    </tr>\n",
-              "    <tr>\n",
-              "      <th>1</th>\n",
-              "      <td>Everything in the kids section of IKEA is so c...</td>\n",
-              "      <td>Negative</td>\n",
-              "    </tr>\n",
-              "    <tr>\n",
-              "      <th>2</th>\n",
-              "      <td>@Hegelbon That heart sliding into the waste ba...</td>\n",
-              "      <td>Negative</td>\n",
-              "    </tr>\n",
-              "    <tr>\n",
-              "      <th>3</th>\n",
-              "      <td>“@ketchBurning: I hate Japanese call him \"bani...</td>\n",
-              "      <td>Negative</td>\n",
-              "    </tr>\n",
-              "    <tr>\n",
-              "      <th>4</th>\n",
-              "      <td>Dang starting next week I have \"work\" :(</td>\n",
-              "      <td>Negative</td>\n",
-              "    </tr>\n",
-              "  </tbody>\n",
-              "</table>\n",
-              "</div>\n",
-              "    <div class=\"colab-df-buttons\">\n",
-              "\n",
-              "  <div class=\"colab-df-container\">\n",
-              "    <button class=\"colab-df-convert\" onclick=\"convertToInteractive('df-e836322b-9911-49eb-8582-f485660a288a')\"\n",
-              "            title=\"Convert this dataframe to an interactive table.\"\n",
-              "            style=\"display:none;\">\n",
-              "\n",
-              "  <svg xmlns=\"http://www.w3.org/2000/svg\" height=\"24px\" viewBox=\"0 -960 960 960\">\n",
-              "    <path d=\"M120-120v-720h720v720H120Zm60-500h600v-160H180v160Zm220 220h160v-160H400v160Zm0 220h160v-160H400v160ZM180-400h160v-160H180v160Zm440 0h160v-160H620v160ZM180-180h160v-160H180v160Zm440 0h160v-160H620v160Z\"/>\n",
-              "  </svg>\n",
-              "    </button>\n",
-              "\n",
-              "  <style>\n",
-              "    .colab-df-container {\n",
-              "      display:flex;\n",
-              "      gap: 12px;\n",
-              "    }\n",
-              "\n",
-              "    .colab-df-convert {\n",
-              "      background-color: #E8F0FE;\n",
-              "      border: none;\n",
-              "      border-radius: 50%;\n",
-              "      cursor: pointer;\n",
-              "      display: none;\n",
-              "      fill: #1967D2;\n",
-              "      height: 32px;\n",
-              "      padding: 0 0 0 0;\n",
-              "      width: 32px;\n",
-              "    }\n",
-              "\n",
-              "    .colab-df-convert:hover {\n",
-              "      background-color: #E2EBFA;\n",
-              "      box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);\n",
-              "      fill: #174EA6;\n",
-              "    }\n",
-              "\n",
-              "    .colab-df-buttons div {\n",
-              "      margin-bottom: 4px;\n",
-              "    }\n",
-              "\n",
-              "    [theme=dark] .colab-df-convert {\n",
-              "      background-color: #3B4455;\n",
-              "      fill: #D2E3FC;\n",
-              "    }\n",
-              "\n",
-              "    [theme=dark] .colab-df-convert:hover {\n",
-              "      background-color: #434B5C;\n",
-              "      box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);\n",
-              "      filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));\n",
-              "      fill: #FFFFFF;\n",
-              "    }\n",
-              "  </style>\n",
-              "\n",
-              "    <script>\n",
-              "      const buttonEl =\n",
-              "        document.querySelector('#df-e836322b-9911-49eb-8582-f485660a288a button.colab-df-convert');\n",
-              "      buttonEl.style.display =\n",
-              "        google.colab.kernel.accessAllowed ? 'block' : 'none';\n",
-              "\n",
-              "      async function convertToInteractive(key) {\n",
-              "        const element = document.querySelector('#df-e836322b-9911-49eb-8582-f485660a288a');\n",
-              "        const dataTable =\n",
-              "          await google.colab.kernel.invokeFunction('convertToInteractive',\n",
-              "                                                    [key], {});\n",
-              "        if (!dataTable) return;\n",
-              "\n",
-              "        const docLinkHtml = 'Like what you see? Visit the ' +\n",
-              "          '<a target=\"_blank\" href=https://colab.research.google.com/notebooks/data_table.ipynb>data table notebook</a>'\n",
-              "          + ' to learn more about interactive tables.';\n",
-              "        element.innerHTML = '';\n",
-              "        dataTable['output_type'] = 'display_data';\n",
-              "        await google.colab.output.renderOutput(dataTable, element);\n",
-              "        const docLink = document.createElement('div');\n",
-              "        docLink.innerHTML = docLinkHtml;\n",
-              "        element.appendChild(docLink);\n",
-              "      }\n",
-              "    </script>\n",
-              "  </div>\n",
-              "\n",
-              "\n",
-              "    </div>\n",
-              "  </div>\n"
-            ],
-            "application/vnd.google.colaboratory.intrinsic+json": {
-              "type": "dataframe",
-              "variable_name": "all_negative_tweets_df",
-              "summary": "{\n  \"name\": \"all_negative_tweets_df\",\n  \"rows\": 5000,\n  \"fields\": [\n    {\n      \"column\": \"Tweets\",\n      \"properties\": {\n        \"dtype\": \"string\",\n        \"num_unique_values\": 5000,\n        \"samples\": [\n          \"im so tempted to stream to screenshot sjkaos :(((( no\",\n          \"@yearsandyears I wanted to go but I don't live near any of these places at all :((\",\n          \"I wish my Parents would live forever. :(\"\n        ],\n        \"semantic_type\": \"\",\n        \"description\": \"\"\n      }\n    },\n    {\n      \"column\": \"Sentiment\",\n      \"properties\": {\n        \"dtype\": \"category\",\n        \"num_unique_values\": 1,\n        \"samples\": [\n          \"Negative\"\n        ],\n        \"semantic_type\": \"\",\n        \"description\": \"\"\n      }\n    }\n  ]\n}"
-            }
-          },
-          "metadata": {},
-          "execution_count": 13
-        }
-      ]
-    },
-    {
-      "cell_type": "code",
-      "source": [
-        "all_tweets_df = pd.concat([all_positive_tweets_df, all_negative_tweets_df], ignore_index = True)\n",
-        "all_tweets_df"
-      ],
-      "metadata": {
-        "colab": {
-          "base_uri": "https://localhost:8080/",
-          "height": 424
-        },
-        "id": "i0ZfCRrWM8K8",
-        "outputId": "5d329a79-8a64-4540-c2c6-9a7958c80868"
-      },
-      "execution_count": null,
-      "outputs": [
-        {
-          "output_type": "execute_result",
-          "data": {
-            "text/plain": [
-              "                                                 Tweets Sentiment\n",
-              "0     #FollowFriday @France_Inte @PKuchly57 @Milipol...  Positive\n",
-              "1     @Lamb2ja Hey James! How odd :/ Please call our...  Positive\n",
-              "2     @DespiteOfficial we had a listen last night :)...  Positive\n",
-              "3                                  @97sides CONGRATS :)  Positive\n",
-              "4     yeaaaah yippppy!!!  my accnt verified rqst has...  Positive\n",
-              "...                                                 ...       ...\n",
-              "9995               I wanna change my avi but uSanele :(  Negative\n",
-              "9996                         MY PUPPY BROKE HER FOOT :(  Negative\n",
-              "9997           where's all the jaebum baby pictures :((  Negative\n",
-              "9998  But but Mr Ahmad Maslan cooks too :( https://t...  Negative\n",
-              "9999  @eawoman As a Hull supporter I am expecting a ...  Negative\n",
-              "\n",
-              "[10000 rows x 2 columns]"
-            ],
-            "text/html": [
-              "\n",
-              "  <div id=\"df-ae4eebde-62ca-4d5b-86f8-c5809b7dec48\" class=\"colab-df-container\">\n",
-              "    <div>\n",
-              "<style scoped>\n",
-              "    .dataframe tbody tr th:only-of-type {\n",
-              "        vertical-align: middle;\n",
-              "    }\n",
-              "\n",
-              "    .dataframe tbody tr th {\n",
-              "        vertical-align: top;\n",
-              "    }\n",
-              "\n",
-              "    .dataframe thead th {\n",
-              "        text-align: right;\n",
-              "    }\n",
-              "</style>\n",
-              "<table border=\"1\" class=\"dataframe\">\n",
-              "  <thead>\n",
-              "    <tr style=\"text-align: right;\">\n",
-              "      <th></th>\n",
-              "      <th>Tweets</th>\n",
-              "      <th>Sentiment</th>\n",
-              "    </tr>\n",
-              "  </thead>\n",
-              "  <tbody>\n",
-              "    <tr>\n",
-              "      <th>0</th>\n",
-              "      <td>#FollowFriday @France_Inte @PKuchly57 @Milipol...</td>\n",
-              "      <td>Positive</td>\n",
-              "    </tr>\n",
-              "    <tr>\n",
-              "      <th>1</th>\n",
-              "      <td>@Lamb2ja Hey James! How odd :/ Please call our...</td>\n",
-              "      <td>Positive</td>\n",
-              "    </tr>\n",
-              "    <tr>\n",
-              "      <th>2</th>\n",
-              "      <td>@DespiteOfficial we had a listen last night :)...</td>\n",
-              "      <td>Positive</td>\n",
-              "    </tr>\n",
-              "    <tr>\n",
-              "      <th>3</th>\n",
-              "      <td>@97sides CONGRATS :)</td>\n",
-              "      <td>Positive</td>\n",
-              "    </tr>\n",
-              "    <tr>\n",
-              "      <th>4</th>\n",
-              "      <td>yeaaaah yippppy!!!  my accnt verified rqst has...</td>\n",
-              "      <td>Positive</td>\n",
-              "    </tr>\n",
-              "    <tr>\n",
-              "      <th>...</th>\n",
-              "      <td>...</td>\n",
-              "      <td>...</td>\n",
-              "    </tr>\n",
-              "    <tr>\n",
-              "      <th>9995</th>\n",
-              "      <td>I wanna change my avi but uSanele :(</td>\n",
-              "      <td>Negative</td>\n",
-              "    </tr>\n",
-              "    <tr>\n",
-              "      <th>9996</th>\n",
-              "      <td>MY PUPPY BROKE HER FOOT :(</td>\n",
-              "      <td>Negative</td>\n",
-              "    </tr>\n",
-              "    <tr>\n",
-              "      <th>9997</th>\n",
-              "      <td>where's all the jaebum baby pictures :((</td>\n",
-              "      <td>Negative</td>\n",
-              "    </tr>\n",
-              "    <tr>\n",
-              "      <th>9998</th>\n",
-              "      <td>But but Mr Ahmad Maslan cooks too :( https://t...</td>\n",
-              "      <td>Negative</td>\n",
-              "    </tr>\n",
-              "    <tr>\n",
-              "      <th>9999</th>\n",
-              "      <td>@eawoman As a Hull supporter I am expecting a ...</td>\n",
-              "      <td>Negative</td>\n",
-              "    </tr>\n",
-              "  </tbody>\n",
-              "</table>\n",
-              "<p>10000 rows × 2 columns</p>\n",
-              "</div>\n",
-              "    <div class=\"colab-df-buttons\">\n",
-              "\n",
-              "  <div class=\"colab-df-container\">\n",
-              "    <button class=\"colab-df-convert\" onclick=\"convertToInteractive('df-ae4eebde-62ca-4d5b-86f8-c5809b7dec48')\"\n",
-              "            title=\"Convert this dataframe to an interactive table.\"\n",
-              "            style=\"display:none;\">\n",
-              "\n",
-              "  <svg xmlns=\"http://www.w3.org/2000/svg\" height=\"24px\" viewBox=\"0 -960 960 960\">\n",
-              "    <path d=\"M120-120v-720h720v720H120Zm60-500h600v-160H180v160Zm220 220h160v-160H400v160Zm0 220h160v-160H400v160ZM180-400h160v-160H180v160Zm440 0h160v-160H620v160ZM180-180h160v-160H180v160Zm440 0h160v-160H620v160Z\"/>\n",
-              "  </svg>\n",
-              "    </button>\n",
-              "\n",
-              "  <style>\n",
-              "    .colab-df-container {\n",
-              "      display:flex;\n",
-              "      gap: 12px;\n",
-              "    }\n",
-              "\n",
-              "    .colab-df-convert {\n",
-              "      background-color: #E8F0FE;\n",
-              "      border: none;\n",
-              "      border-radius: 50%;\n",
-              "      cursor: pointer;\n",
-              "      display: none;\n",
-              "      fill: #1967D2;\n",
-              "      height: 32px;\n",
-              "      padding: 0 0 0 0;\n",
-              "      width: 32px;\n",
-              "    }\n",
-              "\n",
-              "    .colab-df-convert:hover {\n",
-              "      background-color: #E2EBFA;\n",
-              "      box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);\n",
-              "      fill: #174EA6;\n",
-              "    }\n",
-              "\n",
-              "    .colab-df-buttons div {\n",
-              "      margin-bottom: 4px;\n",
-              "    }\n",
-              "\n",
-              "    [theme=dark] .colab-df-convert {\n",
-              "      background-color: #3B4455;\n",
-              "      fill: #D2E3FC;\n",
-              "    }\n",
-              "\n",
-              "    [theme=dark] .colab-df-convert:hover {\n",
-              "      background-color: #434B5C;\n",
-              "      box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);\n",
-              "      filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));\n",
-              "      fill: #FFFFFF;\n",
-              "    }\n",
-              "  </style>\n",
-              "\n",
-              "    <script>\n",
-              "      const buttonEl =\n",
-              "        document.querySelector('#df-ae4eebde-62ca-4d5b-86f8-c5809b7dec48 button.colab-df-convert');\n",
-              "      buttonEl.style.display =\n",
-              "        google.colab.kernel.accessAllowed ? 'block' : 'none';\n",
-              "\n",
-              "      async function convertToInteractive(key) {\n",
-              "        const element = document.querySelector('#df-ae4eebde-62ca-4d5b-86f8-c5809b7dec48');\n",
-              "        const dataTable =\n",
-              "          await google.colab.kernel.invokeFunction('convertToInteractive',\n",
-              "                                                    [key], {});\n",
-              "        if (!dataTable) return;\n",
-              "\n",
-              "        const docLinkHtml = 'Like what you see? Visit the ' +\n",
-              "          '<a target=\"_blank\" href=https://colab.research.google.com/notebooks/data_table.ipynb>data table notebook</a>'\n",
-              "          + ' to learn more about interactive tables.';\n",
-              "        element.innerHTML = '';\n",
-              "        dataTable['output_type'] = 'display_data';\n",
-              "        await google.colab.output.renderOutput(dataTable, element);\n",
-              "        const docLink = document.createElement('div');\n",
-              "        docLink.innerHTML = docLinkHtml;\n",
-              "        element.appendChild(docLink);\n",
-              "      }\n",
-              "    </script>\n",
-              "  </div>\n",
-              "\n",
-              "\n",
-              "  <div id=\"id_1ab8cfd3-4039-4cfe-9767-4ce6493a544d\">\n",
-              "    <style>\n",
-              "      .colab-df-generate {\n",
-              "        background-color: #E8F0FE;\n",
-              "        border: none;\n",
-              "        border-radius: 50%;\n",
-              "        cursor: pointer;\n",
-              "        display: none;\n",
-              "        fill: #1967D2;\n",
-              "        height: 32px;\n",
-              "        padding: 0 0 0 0;\n",
-              "        width: 32px;\n",
-              "      }\n",
-              "\n",
-              "      .colab-df-generate:hover {\n",
-              "        background-color: #E2EBFA;\n",
-              "        box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);\n",
-              "        fill: #174EA6;\n",
-              "      }\n",
-              "\n",
-              "      [theme=dark] .colab-df-generate {\n",
-              "        background-color: #3B4455;\n",
-              "        fill: #D2E3FC;\n",
-              "      }\n",
-              "\n",
-              "      [theme=dark] .colab-df-generate:hover {\n",
-              "        background-color: #434B5C;\n",
-              "        box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);\n",
-              "        filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));\n",
-              "        fill: #FFFFFF;\n",
-              "      }\n",
-              "    </style>\n",
-              "    <button class=\"colab-df-generate\" onclick=\"generateWithVariable('all_tweets_df')\"\n",
-              "            title=\"Generate code using this dataframe.\"\n",
-              "            style=\"display:none;\">\n",
-              "\n",
-              "  <svg xmlns=\"http://www.w3.org/2000/svg\" height=\"24px\"viewBox=\"0 0 24 24\"\n",
-              "       width=\"24px\">\n",
-              "    <path d=\"M7,19H8.4L18.45,9,17,7.55,7,17.6ZM5,21V16.75L18.45,3.32a2,2,0,0,1,2.83,0l1.4,1.43a1.91,1.91,0,0,1,.58,1.4,1.91,1.91,0,0,1-.58,1.4L9.25,21ZM18.45,9,17,7.55Zm-12,3A5.31,5.31,0,0,0,4.9,8.1,5.31,5.31,0,0,0,1,6.5,5.31,5.31,0,0,0,4.9,4.9,5.31,5.31,0,0,0,6.5,1,5.31,5.31,0,0,0,8.1,4.9,5.31,5.31,0,0,0,12,6.5,5.46,5.46,0,0,0,6.5,12Z\"/>\n",
-              "  </svg>\n",
-              "    </button>\n",
-              "    <script>\n",
-              "      (() => {\n",
-              "      const buttonEl =\n",
-              "        document.querySelector('#id_1ab8cfd3-4039-4cfe-9767-4ce6493a544d button.colab-df-generate');\n",
-              "      buttonEl.style.display =\n",
-              "        google.colab.kernel.accessAllowed ? 'block' : 'none';\n",
-              "\n",
-              "      buttonEl.onclick = () => {\n",
-              "        google.colab.notebook.generateWithVariable('all_tweets_df');\n",
-              "      }\n",
-              "      })();\n",
-              "    </script>\n",
-              "  </div>\n",
-              "\n",
-              "    </div>\n",
-              "  </div>\n"
-            ],
-            "application/vnd.google.colaboratory.intrinsic+json": {
-              "type": "dataframe",
-              "variable_name": "all_tweets_df",
-              "summary": "{\n  \"name\": \"all_tweets_df\",\n  \"rows\": 10000,\n  \"fields\": [\n    {\n      \"column\": \"Tweets\",\n      \"properties\": {\n        \"dtype\": \"string\",\n        \"num_unique_values\": 10000,\n        \"samples\": [\n          \"I love you, how but you? @Taecyeon2pm8 did you feel the same? Emm I think not :(\",\n          \"@mayusushita @dildeewana_ @sonalp2591 @deepti_ahmd @armansushita8 Thanks Guys :)\",\n          \"Your love, O Lord, is better than life. :) &lt;3 https://t.co/KPCeYJqKLM\"\n        ],\n        \"semantic_type\": \"\",\n        \"description\": \"\"\n      }\n    },\n    {\n      \"column\": \"Sentiment\",\n      \"properties\": {\n        \"dtype\": \"category\",\n        \"num_unique_values\": 2,\n        \"samples\": [\n          \"Negative\",\n          \"Positive\"\n        ],\n        \"semantic_type\": \"\",\n        \"description\": \"\"\n      }\n    }\n  ]\n}"
-            }
-          },
-          "metadata": {},
-          "execution_count": 14
-        }
-      ]
-    },
-    {
-      "cell_type": "code",
-      "source": [
-        "all_tweets_df = all_tweets_df.sample(frac = 1).reset_index(drop=True)\n",
-        "all_tweets_df"
-      ],
-      "metadata": {
-        "colab": {
-          "base_uri": "https://localhost:8080/",
-          "height": 424
-        },
-        "id": "jJlCzw-hOrzp",
-        "outputId": "f5757127-7067-443f-ddd4-39097cd34ed4"
-      },
-      "execution_count": null,
-      "outputs": [
-        {
-          "output_type": "execute_result",
-          "data": {
-            "text/plain": [
-              "                                                 Tweets Sentiment\n",
-              "0     @beamiller I can't listen to your new album on...  Negative\n",
-              "1     Ah ma guy. You know the thing. \"@ceafive: the ...  Negative\n",
-              "2     finding old pictures with my long hair makes m...  Negative\n",
-              "3     @amerazjm FOLLOWED ME THANKS, AND\\n@justinbieb...  Negative\n",
-              "4                                  @JackFejer thanks :)  Positive\n",
-              "...                                                 ...       ...\n",
-              "9995          @AnnieIsDoomed its not my fault sweedy :(  Negative\n",
-              "9996  Playing \"Give Your Heart A Break\" having memor...  Negative\n",
-              "9997                               Always motivated :-)  Positive\n",
-              "9998  eric &amp; i made up and he still didn't tell ...  Negative\n",
-              "9999  @LukeBryanOnline Yayyyy!!! I hope it's not whi...  Negative\n",
-              "\n",
-              "[10000 rows x 2 columns]"
-            ],
-            "text/html": [
-              "\n",
-              "  <div id=\"df-bdabc434-0391-4a17-9294-cf8980a8edc8\" class=\"colab-df-container\">\n",
-              "    <div>\n",
-              "<style scoped>\n",
-              "    .dataframe tbody tr th:only-of-type {\n",
-              "        vertical-align: middle;\n",
-              "    }\n",
-              "\n",
-              "    .dataframe tbody tr th {\n",
-              "        vertical-align: top;\n",
-              "    }\n",
-              "\n",
-              "    .dataframe thead th {\n",
-              "        text-align: right;\n",
-              "    }\n",
-              "</style>\n",
-              "<table border=\"1\" class=\"dataframe\">\n",
-              "  <thead>\n",
-              "    <tr style=\"text-align: right;\">\n",
-              "      <th></th>\n",
-              "      <th>Tweets</th>\n",
-              "      <th>Sentiment</th>\n",
-              "    </tr>\n",
-              "  </thead>\n",
-              "  <tbody>\n",
-              "    <tr>\n",
-              "      <th>0</th>\n",
-              "      <td>@beamiller I can't listen to your new album on...</td>\n",
-              "      <td>Negative</td>\n",
-              "    </tr>\n",
-              "    <tr>\n",
-              "      <th>1</th>\n",
-              "      <td>Ah ma guy. You know the thing. \"@ceafive: the ...</td>\n",
-              "      <td>Negative</td>\n",
-              "    </tr>\n",
-              "    <tr>\n",
-              "      <th>2</th>\n",
-              "      <td>finding old pictures with my long hair makes m...</td>\n",
-              "      <td>Negative</td>\n",
-              "    </tr>\n",
-              "    <tr>\n",
-              "      <th>3</th>\n",
-              "      <td>@amerazjm FOLLOWED ME THANKS, AND\\n@justinbieb...</td>\n",
-              "      <td>Negative</td>\n",
-              "    </tr>\n",
-              "    <tr>\n",
-              "      <th>4</th>\n",
-              "      <td>@JackFejer thanks :)</td>\n",
-              "      <td>Positive</td>\n",
-              "    </tr>\n",
-              "    <tr>\n",
-              "      <th>...</th>\n",
-              "      <td>...</td>\n",
-              "      <td>...</td>\n",
-              "    </tr>\n",
-              "    <tr>\n",
-              "      <th>9995</th>\n",
-              "      <td>@AnnieIsDoomed its not my fault sweedy :(</td>\n",
-              "      <td>Negative</td>\n",
-              "    </tr>\n",
-              "    <tr>\n",
-              "      <th>9996</th>\n",
-              "      <td>Playing \"Give Your Heart A Break\" having memor...</td>\n",
-              "      <td>Negative</td>\n",
-              "    </tr>\n",
-              "    <tr>\n",
-              "      <th>9997</th>\n",
-              "      <td>Always motivated :-)</td>\n",
-              "      <td>Positive</td>\n",
-              "    </tr>\n",
-              "    <tr>\n",
-              "      <th>9998</th>\n",
-              "      <td>eric &amp;amp; i made up and he still didn't tell ...</td>\n",
-              "      <td>Negative</td>\n",
-              "    </tr>\n",
-              "    <tr>\n",
-              "      <th>9999</th>\n",
-              "      <td>@LukeBryanOnline Yayyyy!!! I hope it's not whi...</td>\n",
-              "      <td>Negative</td>\n",
-              "    </tr>\n",
-              "  </tbody>\n",
-              "</table>\n",
-              "<p>10000 rows × 2 columns</p>\n",
-              "</div>\n",
-              "    <div class=\"colab-df-buttons\">\n",
-              "\n",
-              "  <div class=\"colab-df-container\">\n",
-              "    <button class=\"colab-df-convert\" onclick=\"convertToInteractive('df-bdabc434-0391-4a17-9294-cf8980a8edc8')\"\n",
-              "            title=\"Convert this dataframe to an interactive table.\"\n",
-              "            style=\"display:none;\">\n",
-              "\n",
-              "  <svg xmlns=\"http://www.w3.org/2000/svg\" height=\"24px\" viewBox=\"0 -960 960 960\">\n",
-              "    <path d=\"M120-120v-720h720v720H120Zm60-500h600v-160H180v160Zm220 220h160v-160H400v160Zm0 220h160v-160H400v160ZM180-400h160v-160H180v160Zm440 0h160v-160H620v160ZM180-180h160v-160H180v160Zm440 0h160v-160H620v160Z\"/>\n",
-              "  </svg>\n",
-              "    </button>\n",
-              "\n",
-              "  <style>\n",
-              "    .colab-df-container {\n",
-              "      display:flex;\n",
-              "      gap: 12px;\n",
-              "    }\n",
-              "\n",
-              "    .colab-df-convert {\n",
-              "      background-color: #E8F0FE;\n",
-              "      border: none;\n",
-              "      border-radius: 50%;\n",
-              "      cursor: pointer;\n",
-              "      display: none;\n",
-              "      fill: #1967D2;\n",
-              "      height: 32px;\n",
-              "      padding: 0 0 0 0;\n",
-              "      width: 32px;\n",
-              "    }\n",
-              "\n",
-              "    .colab-df-convert:hover {\n",
-              "      background-color: #E2EBFA;\n",
-              "      box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);\n",
-              "      fill: #174EA6;\n",
-              "    }\n",
-              "\n",
-              "    .colab-df-buttons div {\n",
-              "      margin-bottom: 4px;\n",
-              "    }\n",
-              "\n",
-              "    [theme=dark] .colab-df-convert {\n",
-              "      background-color: #3B4455;\n",
-              "      fill: #D2E3FC;\n",
-              "    }\n",
-              "\n",
-              "    [theme=dark] .colab-df-convert:hover {\n",
-              "      background-color: #434B5C;\n",
-              "      box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);\n",
-              "      filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));\n",
-              "      fill: #FFFFFF;\n",
-              "    }\n",
-              "  </style>\n",
-              "\n",
-              "    <script>\n",
-              "      const buttonEl =\n",
-              "        document.querySelector('#df-bdabc434-0391-4a17-9294-cf8980a8edc8 button.colab-df-convert');\n",
-              "      buttonEl.style.display =\n",
-              "        google.colab.kernel.accessAllowed ? 'block' : 'none';\n",
-              "\n",
-              "      async function convertToInteractive(key) {\n",
-              "        const element = document.querySelector('#df-bdabc434-0391-4a17-9294-cf8980a8edc8');\n",
-              "        const dataTable =\n",
-              "          await google.colab.kernel.invokeFunction('convertToInteractive',\n",
-              "                                                    [key], {});\n",
-              "        if (!dataTable) return;\n",
-              "\n",
-              "        const docLinkHtml = 'Like what you see? Visit the ' +\n",
-              "          '<a target=\"_blank\" href=https://colab.research.google.com/notebooks/data_table.ipynb>data table notebook</a>'\n",
-              "          + ' to learn more about interactive tables.';\n",
-              "        element.innerHTML = '';\n",
-              "        dataTable['output_type'] = 'display_data';\n",
-              "        await google.colab.output.renderOutput(dataTable, element);\n",
-              "        const docLink = document.createElement('div');\n",
-              "        docLink.innerHTML = docLinkHtml;\n",
-              "        element.appendChild(docLink);\n",
-              "      }\n",
-              "    </script>\n",
-              "  </div>\n",
-              "\n",
-              "\n",
-              "  <div id=\"id_fb6ff1ff-60ac-4105-8db4-e0cfd15b3cab\">\n",
-              "    <style>\n",
-              "      .colab-df-generate {\n",
-              "        background-color: #E8F0FE;\n",
-              "        border: none;\n",
-              "        border-radius: 50%;\n",
-              "        cursor: pointer;\n",
-              "        display: none;\n",
-              "        fill: #1967D2;\n",
-              "        height: 32px;\n",
-              "        padding: 0 0 0 0;\n",
-              "        width: 32px;\n",
-              "      }\n",
-              "\n",
-              "      .colab-df-generate:hover {\n",
-              "        background-color: #E2EBFA;\n",
-              "        box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);\n",
-              "        fill: #174EA6;\n",
-              "      }\n",
-              "\n",
-              "      [theme=dark] .colab-df-generate {\n",
-              "        background-color: #3B4455;\n",
-              "        fill: #D2E3FC;\n",
-              "      }\n",
-              "\n",
-              "      [theme=dark] .colab-df-generate:hover {\n",
-              "        background-color: #434B5C;\n",
-              "        box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);\n",
-              "        filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));\n",
-              "        fill: #FFFFFF;\n",
-              "      }\n",
-              "    </style>\n",
-              "    <button class=\"colab-df-generate\" onclick=\"generateWithVariable('all_tweets_df')\"\n",
-              "            title=\"Generate code using this dataframe.\"\n",
-              "            style=\"display:none;\">\n",
-              "\n",
-              "  <svg xmlns=\"http://www.w3.org/2000/svg\" height=\"24px\"viewBox=\"0 0 24 24\"\n",
-              "       width=\"24px\">\n",
-              "    <path d=\"M7,19H8.4L18.45,9,17,7.55,7,17.6ZM5,21V16.75L18.45,3.32a2,2,0,0,1,2.83,0l1.4,1.43a1.91,1.91,0,0,1,.58,1.4,1.91,1.91,0,0,1-.58,1.4L9.25,21ZM18.45,9,17,7.55Zm-12,3A5.31,5.31,0,0,0,4.9,8.1,5.31,5.31,0,0,0,1,6.5,5.31,5.31,0,0,0,4.9,4.9,5.31,5.31,0,0,0,6.5,1,5.31,5.31,0,0,0,8.1,4.9,5.31,5.31,0,0,0,12,6.5,5.46,5.46,0,0,0,6.5,12Z\"/>\n",
-              "  </svg>\n",
-              "    </button>\n",
-              "    <script>\n",
-              "      (() => {\n",
-              "      const buttonEl =\n",
-              "        document.querySelector('#id_fb6ff1ff-60ac-4105-8db4-e0cfd15b3cab button.colab-df-generate');\n",
-              "      buttonEl.style.display =\n",
-              "        google.colab.kernel.accessAllowed ? 'block' : 'none';\n",
-              "\n",
-              "      buttonEl.onclick = () => {\n",
-              "        google.colab.notebook.generateWithVariable('all_tweets_df');\n",
-              "      }\n",
-              "      })();\n",
-              "    </script>\n",
-              "  </div>\n",
-              "\n",
-              "    </div>\n",
-              "  </div>\n"
-            ],
-            "application/vnd.google.colaboratory.intrinsic+json": {
-              "type": "dataframe",
-              "variable_name": "all_tweets_df",
-              "summary": "{\n  \"name\": \"all_tweets_df\",\n  \"rows\": 10000,\n  \"fields\": [\n    {\n      \"column\": \"Tweets\",\n      \"properties\": {\n        \"dtype\": \"string\",\n        \"num_unique_values\": 10000,\n        \"samples\": [\n          \"#Zayn_Come_Back_We_Miss_You &lt;3 &lt;3 :( SO MUCH @zaynmalik\",\n          \"@melfoster666 That's not true.\\nI can quit whenever I want to.\\n:D\",\n          \"@slaydrey where is this?? \\u2665\\u2665\\u2665 looks so relaxing :(\"\n        ],\n        \"semantic_type\": \"\",\n        \"description\": \"\"\n      }\n    },\n    {\n      \"column\": \"Sentiment\",\n      \"properties\": {\n        \"dtype\": \"category\",\n        \"num_unique_values\": 2,\n        \"samples\": [\n          \"Positive\",\n          \"Negative\"\n        ],\n        \"semantic_type\": \"\",\n        \"description\": \"\"\n      }\n    }\n  ]\n}"
-            }
-          },
-          "metadata": {},
-          "execution_count": 15
-        }
-      ]
-    },
-    {
-      "cell_type": "code",
-      "source": [
-        "tweet1 = all_tweets_df.iloc[random.randint(0, len(all_tweets_df['Tweets']))]\n",
-        "tweet1[\"Tweets\"]"
-      ],
-      "metadata": {
-        "colab": {
-          "base_uri": "https://localhost:8080/",
-          "height": 35
-        },
-        "id": "DE90fi_6Qfy2",
-        "outputId": "e23cab10-726a-4e92-dd66-a8d7165bbd58"
-      },
-      "execution_count": null,
-      "outputs": [
-        {
-          "output_type": "execute_result",
-          "data": {
-            "text/plain": [
-              "'Nobody :) likes :) me :)'"
-            ],
-            "application/vnd.google.colaboratory.intrinsic+json": {
-              "type": "string"
-            }
-          },
-          "metadata": {},
-          "execution_count": 16
-        }
-      ]
-    },
-    {
-      "cell_type": "code",
-      "source": [
-        "y_positive = (all_tweets_df[\"Sentiment\"] == \"Positive\").sum()"
-      ],
-      "metadata": {
-        "id": "PjlXBodvRk5Z"
-      },
-      "execution_count": null,
-      "outputs": []
-    },
-    {
-      "cell_type": "code",
-      "source": [
-        "y_negative = (all_tweets_df[\"Sentiment\"] == \"Negative\").sum()"
-      ],
-      "metadata": {
-        "id": "c2MeRc7oSJjU"
-      },
-      "execution_count": null,
-      "outputs": []
-    },
-    {
-      "cell_type": "code",
-      "source": [
-        "fig = plt.figure(figsize = (3, 6))\n",
-        "labels = 'Positive', 'Negative'\n",
-        "sizes = [y_positive, y_negative]\n",
-        "plt.bar(labels, sizes, color = ['green', 'red'])\n",
-        "plt.title(\"Distribution of Tweets\")\n",
-        "plt.xlabel(\"Sentiment\")\n",
-        "plt.ylabel(\"Number of Tweets\")\n",
-        "plt.show()"
-      ],
-      "metadata": {
-        "colab": {
-          "base_uri": "https://localhost:8080/",
-          "height": 564
-        },
-        "id": "ouc5zu_FSYVh",
-        "outputId": "16b989e4-7db1-44d0-9e22-7b01932a0537"
-      },
-      "execution_count": null,
-      "outputs": [
-        {
-          "output_type": "display_data",
-          "data": {
-            "text/plain": [
-              "<Figure size 300x600 with 1 Axes>"
-            ],
-            "image/png": "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K1euRNu2bdG3b180aNAAALB9+3blUJeIqDQyM3SGtm3b4u7du9DpdChXrpzSPnz4cNjY2Bi1OCIiYzJ4D699+/Z4+PChXtgBQPny5dG7d2+jFUZEZGwGB15UVBSysrIKtGdkZODQoUNGKYqIqDgU+ZD27Nmzyr8vXLiApKQk5X1ubi52796NypUrG7c6IiIjKnLgNWzYECqVCiqVCu3bty8w3crKCkuXLjVqcURExlTkwLt+/TqEEKhevTpOnDgBJycnZZqFhQUqVqwIU1PTYimSiMgYihx47u7uAIC8vLxiK4aIqDi91relrFu3Di1atICrqytu3rwJAFi4cCF++eUXoxZHRGRMBgfe8uXLERISgq5duyI1NRW5ubkAgHLlymHRokXGro+IyGgMDrylS5di1apVmDJlit45uyZNmuDcuXNGLY6IyJgMDrzr16+jUaNGBdrVajUePXpklKKIiIqDwYHn4eGB2NjYAu27d+9G7dq1jVETEVGxMPiztCEhIQgKCkJGRgaEEDhx4gT+85//YM6cOfjxxx+Lo0YiIqMwOPCGDh0KKysrfPXVV3j8+DH69esHV1dXLF68GH369CmOGomIjMLgwAOAwMBABAYG4vHjx0hPT0fFihWNXRcRkdG91n14OTk5+O2337Bu3TpYWVkBePoFoOnp6UYtjojImAzew7t58yY6d+6M+Ph4ZGZmomPHjrCzs8PcuXORmZmJFStWFEedRERvzOA9vDFjxqBJkyZ48OCBsncHAB999BH27dtn1OKIiIzJ4MA7dOgQvvrqK1hYWOi1V6tWDX/99ZdBYy1fvhz169eHRqOBRqOBr68vdu3apUzPyMhAUFAQHB0dYWtri4CAACQnJ+uNER8fD39/f1hbW6NixYoYP348cnJy9PpERUXBx8cHarUanp6efLoakaQMDry8vDzl42TPun37Nuzs7Awaq0qVKvjmm28QExODU6dOoX379ujevTvi4uIAAMHBwdixYwe2bNmCAwcOICEhAT179lTmz83Nhb+/P7KysnD06FGsWbMGYWFhmDZtmtLn+vXr8Pf3R7t27RAbG4uxY8di6NCh2LNnj6GrTkRlnEoIIQyZoXfv3rC3t8cPP/wAOzs7nD17Fk5OTujevTuqVq2K1atXv1FB5cuXx7fffotevXrByckJGzZsQK9evQAAly5dQu3atREd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\n"
-          },
-          "metadata": {}
-        }
-      ]
-    },
-    {
-      "cell_type": "markdown",
-      "source": [
-        "#Preprocessing"
-      ],
-      "metadata": {
-        "id": "QEmr2bepTyEy"
-      }
-    },
-    {
-      "cell_type": "code",
-      "source": [
-        "nltk.download(\"stopwords\")"
-      ],
-      "metadata": {
-        "colab": {
-          "base_uri": "https://localhost:8080/"
-        },
-        "id": "rvNiIv3XT0Ay",
-        "outputId": "1f0b5f1c-d636-4e3e-8ece-9afa3537c8d1"
-      },
-      "execution_count": null,
-      "outputs": [
         {
           "output_type": "stream",
           "name": "stderr",
           "text": [
-            "[nltk_data] Downloading package stopwords to /root/nltk_data...\n",
-            "[nltk_data]   Package stopwords is already up-to-date!\n"
+            "[nltk_data] Downloading package punkt to /root/nltk_data...\n",
+            "[nltk_data]   Unzipping tokenizers/punkt.zip.\n",
+            "[nltk_data] Downloading package punkt_tab to /root/nltk_data...\n",
+            "[nltk_data]   Unzipping tokenizers/punkt_tab.zip.\n",
+            "[nltk_data] Downloading package maxent_ne_chunker_tab to\n",
+            "[nltk_data]     /root/nltk_data...\n",
+            "[nltk_data]   Unzipping chunkers/maxent_ne_chunker_tab.zip.\n",
+            "[nltk_data] Downloading package words to /root/nltk_data...\n",
+            "[nltk_data]   Unzipping corpora/words.zip.\n",
+            "[nltk_data] Downloading package averaged_perceptron_tagger_eng to\n",
+            "[nltk_data]     /root/nltk_data...\n",
+            "[nltk_data]   Unzipping taggers/averaged_perceptron_tagger_eng.zip.\n",
+            "[nltk_data] Downloading package tagsets_json to /root/nltk_data...\n",
+            "[nltk_data]   Unzipping help/tagsets_json.zip.\n"
           ]
         },
         {
@@ -1574,94 +79,34 @@
             ]
           },
           "metadata": {},
-          "execution_count": 20
+          "execution_count": 4
         }
-      ]
-    },
-    {
-      "cell_type": "code",
+      ],
       "source": [
-        "import re\n",
-        "import string\n",
+        "print(\"Name: Aryan Pilwalkar UIN:231A016\")\n",
+        "import nltk\n",
         "\n",
-        "from nltk.corpus import stopwords\n",
-        "from nltk.stem import PorterStemmer\n",
-        "from nltk.tokenize import TweetTokenizer"
-      ],
-      "metadata": {
-        "id": "LuaWOP1wT6g2"
-      },
-      "execution_count": null,
-      "outputs": []
-    },
-    {
-      "cell_type": "code",
-      "source": [
-        "tweet2 = re.sub(r'^RT[\\s]+', '', tweet1[\"Tweets\"])\n",
-        "tweet2 = re.sub(r'https?:\\/\\/.[^\\s\\n\\r]+', '', tweet2)\n",
-        "tweet2 = re.sub(r'#', '', tweet2)\n",
-        "tweet2 = re.sub(r'@', '', tweet2)\n",
-        "tweet2 = re.sub(r':\\)|:\\(', '', tweet2)\n",
-        "print(\"Cleaned tweet: \", tweet2)"
-      ],
-      "metadata": {
-        "colab": {
-          "base_uri": "https://localhost:8080/"
-        },
-        "id": "v_S8O8KhUofZ",
-        "outputId": "210ea0ee-ceaa-415f-f13b-23b8fca5b9c3"
-      },
-      "execution_count": null,
-      "outputs": [
-        {
-          "output_type": "stream",
-          "name": "stdout",
-          "text": [
-            "Cleaned tweet:  Nobody  likes  me \n"
-          ]
-        }
+        "nltk.download(\"punkt\")\n",
+        "nltk.download(\"punkt_tab\")\n",
+        "nltk.download(\"maxent_ne_chunker_tab\")\n",
+        "nltk.download(\"words\")\n",
+        "nltk.download(\"averaged_perceptron_tagger_eng\")\n",
+        "nltk.download(\"tagsets_json\")"
       ]
     },
     {
       "cell_type": "code",
       "source": [
-        "tokenizer = TweetTokenizer(preserve_case = False, strip_handles = True, reduce_len = True)\n",
-        "tweet_tokens = tokenizer.tokenize(tweet2)\n",
-        "print(\"Tokenized String:\\n\", tweet_tokens)"
-      ],
-      "metadata": {
-        "colab": {
-          "base_uri": "https://localhost:8080/"
-        },
-        "id": "1vi3CAoGWoyD",
-        "outputId": "697138df-44a2-426f-d2d7-dbcff0635ee4"
-      },
-      "execution_count": null,
-      "outputs": [
-        {
-          "output_type": "stream",
-          "name": "stdout",
-          "text": [
-            "Tokenized String:\n",
-            " ['nobody', 'likes', 'me']\n"
-          ]
-        }
-      ]
-    },
-    {
-      "cell_type": "code",
-      "source": [
-        "stopwords_english = stopwords.words('english')\n",
-        "print(\"English Stop words:\\n\", stopwords_english)\n",
+        "print(\"Name: Aryan Pilwalkar UIN:231A016\")\n",
         "\n",
-        "print(\"Punctuation: \", string.punctuation)"
+        "from nltk import word_tokenize,pos_tag,ne_chunk"
       ],
       "metadata": {
         "colab": {
           "base_uri": "https://localhost:8080/"
         },
-        "id": "wrxHi5SRXhA6",
-        "outputId": "68285f88-a7f3-4074-df7c-853b1ed92c7f"
+        "id": "oZzOmiTjBUAl",
+        "outputId": "f591d430-9ded-4a58-c9b2-5d3e4202cd83"
       },
       "execution_count": null,
       "outputs": [
@@ -1669,9 +114,7 @@
           "output_type": "stream",
           "name": "stdout",
           "text": [
-            "English Stop words:\n",
-            " ['a', 'about', 'above', 'after', 'again', 'against', 'ain', 'all', 'am', 'an', 'and', 'any', 'are', 'aren', \"aren't\", 'as', 'at', 'be', 'because', 'been', 'before', 'being', 'below', 'between', 'both', 'but', 'by', 'can', 'couldn', \"couldn't\", 'd', 'did', 'didn', \"didn't\", 'do', 'does', 'doesn', \"doesn't\", 'doing', 'don', \"don't\", 'down', 'during', 'each', 'few', 'for', 'from', 'further', 'had', 'hadn', \"hadn't\", 'has', 'hasn', \"hasn't\", 'have', 'haven', \"haven't\", 'having', 'he', \"he'd\", \"he'll\", 'her', 'here', 'hers', 'herself', \"he's\", 'him', 'himself', 'his', 'how', 'i', \"i'd\", 'if', \"i'll\", \"i'm\", 'in', 'into', 'is', 'isn', \"isn't\", 'it', \"it'd\", \"it'll\", \"it's\", 'its', 'itself', \"i've\", 'just', 'll', 'm', 'ma', 'me', 'mightn', \"mightn't\", 'more', 'most', 'mustn', \"mustn't\", 'my', 'myself', 'needn', \"needn't\", 'no', 'nor', 'not', 'now', 'o', 'of', 'off', 'on', 'once', 'only', 'or', 'other', 'our', 'ours', 'ourselves', 'out', 'over', 'own', 're', 's', 'same', 'shan', \"shan't\", 'she', \"she'd\", \"she'll\", \"she's\", 'should', 'shouldn', \"shouldn't\", \"should've\", 'so', 'some', 'such', 't', 'than', 'that', \"that'll\", 'the', 'their', 'theirs', 'them', 'themselves', 'then', 'there', 'these', 'they', \"they'd\", \"they'll\", \"they're\", \"they've\", 'this', 'those', 'through', 'to', 'too', 'under', 'until', 'up', 've', 'very', 'was', 'wasn', \"wasn't\", 'we', \"we'd\", \"we'll\", \"we're\", 'were', 'weren', \"weren't\", \"we've\", 'what', 'when', 'where', 'which', 'while', 'who', 'whom', 'why', 'will', 'with', 'won', \"won't\", 'wouldn', \"wouldn't\", 'y', 'you', \"you'd\", \"you'll\", 'your', \"you're\", 'yours', 'yourself', 'yourselves', \"you've\"]\n",
-            "Punctuation:  !\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~\n"
+            "Name: Aryan Pilwalkar UIN:231A016\n"
           ]
         }
       ]
@@ -1679,22 +122,16 @@
     {
       "cell_type": "code",
       "source": [
-        "print(tweet_tokens)\n",
-        "print()\n",
-        "cleaned_tweets = []\n",
-        "\n",
-        "for word in tweet_tokens:\n",
-        "  if (word not in stopwords_english and word not in string.punctuation):\n",
-        "    cleaned_tweets.append(word)\n",
-        "\n",
-        "print(\"Removed stopwords and punctuation:\\n\", cleaned_tweets)"
+        "print(\"Name: Aryan Pilwalkar UIN:231A016\")\n",
+        "text = \"The Natural Language Toolkit, or more commonly NLTK, is a wonderful suite of libraries for Python! Dr. John Doe, an expert in AI, visited M.I.T. last Tuesday at 3:00 PM. He spoke about text-processing, running algorithms, and how computers are learning beautifully from human data. Aren't these technologies changing India rapidly?\"\n",
+        "print(text)"
       ],
       "metadata": {
         "colab": {
           "base_uri": "https://localhost:8080/"
         },
-        "id": "3i3pbNk3Y4LM",
-        "outputId": "fd78ef34-02de-4ec6-ab70-e0db7526b4af"
+        "id": "7GGbe5JgA3gr",
+        "outputId": "57034e5b-9b12-4e1b-bae4-12ec13d64ed9"
       },
       "execution_count": null,
       "outputs": [
@@ -1702,10 +139,8 @@
           "output_type": "stream",
           "name": "stdout",
           "text": [
-            "['nobody', 'likes', 'me']\n",
-            "\n",
-            "Removed stopwords and punctuation:\n",
-            " ['nobody', 'likes']\n"
+            "Name: Aryan Pilwalkar UIN:231A016\n",
+            "The Natural Language Toolkit, or more commonly NLTK, is a wonderful suite of libraries for Python! Dr. John Doe, an expert in AI, visited M.I.T. last Tuesday at 3:00 PM. He spoke about text-processing, running algorithms, and how computers are learning beautifully from human data. Aren't these technologies changing India rapidly?\n"
           ]
         }
       ]
@@ -1713,39 +148,16 @@
     {
       "cell_type": "code",
       "source": [
-        "def process_tweet(tweet):\n",
-        "  tweet = re.sub(r'^RT[\\s]+', '', tweet)\n",
-        "  tweet = re.sub(r'https?:\\/\\/.[^\\s\\n\\r]+', '', tweet)\n",
-        "  tweet = re.sub(r'#', '', tweet)\n",
-        "  tweet = re.sub(r'@', '', tweet)\n",
-        "  tweet = re.sub(r':\\)|:\\(', '', tweet)\n",
-        "  tweet_tokens = tokenizer.tokenize(tweet)\n",
-        "  stopwords_english = stopwords.words('english')\n",
-        "  cleaned_tweet = []\n",
-        "  for word in tweet_tokens:\n",
-        "    if (word not in stopwords_english and word not in string.punctuation):\n",
-        "      cleaned_tweet.append(word)\n",
-        "  return cleaned_tweet"
-      ],
-      "metadata": {
-        "id": "FK7AfLfhHn6Y"
-      },
-      "execution_count": null,
-      "outputs": []
-    },
-    {
-      "cell_type": "code",
-      "source": [
-        "random_tweet = all_tweets_df.iloc[random.randint(0, len(all_tweets_df['Tweets']))]\n",
-        "print(f\"Original Tweet: {random_tweet[\"Tweets\"]}\")\n",
-        "print(f\"Cleaned Tweet: {process_tweet(random_tweet[\"Tweets\"])}\")"
+        "print(\"Name: Aryan Pilwalkar UIN:231A016\")\n",
+        "tokens = word_tokenize(text)\n",
+        "print(tokens)"
       ],
       "metadata": {
         "colab": {
           "base_uri": "https://localhost:8080/"
         },
-        "id": "6Tc46Vw3KOOg",
-        "outputId": "6ad8520f-63c0-48c6-94ff-b82aac302e00"
+        "id": "amPUGNWcBraB",
+        "outputId": "5ed82892-6445-47f2-974c-8387bc0b42f2"
       },
       "execution_count": null,
       "outputs": [
@@ -1753,8 +165,8 @@
           "output_type": "stream",
           "name": "stdout",
           "text": [
-            "Original Tweet: @clemencycox i want a sausage roll :-(\n",
-            "Cleaned Tweet: ['clemencycox', 'want', 'sausage', 'roll', ':-(']\n"
+            "Name: Aryan Pilwalkar UIN:231A016\n",
+            "['The', 'Natural', 'Language', 'Toolkit', ',', 'or', 'more', 'commonly', 'NLTK', ',', 'is', 'a', 'wonderful', 'suite', 'of', 'libraries', 'for', 'Python', '!', 'Dr.', 'John', 'Doe', ',', 'an', 'expert', 'in', 'AI', ',', 'visited', 'M.I.T', '.', 'last', 'Tuesday', 'at', '3:00', 'PM', '.', 'He', 'spoke', 'about', 'text-processing', ',', 'running', 'algorithms', ',', 'and', 'how', 'computers', 'are', 'learning', 'beautifully', 'from', 'human', 'data', '.', 'Are', \"n't\", 'these', 'technologies', 'changing', 'India', 'rapidly', '?']\n"
           ]
         }
       ]
@@ -1762,593 +174,594 @@
     {
       "cell_type": "code",
       "source": [
-        "processed_tweets = all_tweets_df['Tweets'].apply(process_tweet)\n",
-        "all_tweets_df['Processed Tweets'] = processed_tweets\n",
-        "pd.set_option('display.max_colwidth', None)\n",
-        "all_tweets_df"
+        "print(\"Name: Aryan Pilwalkar UIN:231A016\")\n",
+        "tagged_tokens = pos_tag(tokens)\n",
+        "print(tagged_tokens)"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "_4rMxseUCCNc",
+        "outputId": "4d09374b-6883-42a4-e15c-89c3654614ea"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Name: Aryan Pilwalkar UIN:231A016\n",
+            "[('The', 'DT'), ('Natural', 'NNP'), ('Language', 'NNP'), ('Toolkit', 'NNP'), (',', ','), ('or', 'CC'), ('more', 'JJR'), ('commonly', 'RB'), ('NLTK', 'NNP'), (',', ','), ('is', 'VBZ'), ('a', 'DT'), ('wonderful', 'JJ'), ('suite', 'NN'), ('of', 'IN'), ('libraries', 'NNS'), ('for', 'IN'), ('Python', 'NNP'), ('!', '.'), ('Dr.', 'NNP'), ('John', 'NNP'), ('Doe', 'NNP'), (',', ','), ('an', 'DT'), ('expert', 'NN'), ('in', 'IN'), ('AI', 'NNP'), (',', ','), ('visited', 'VBD'), ('M.I.T', 'NNP'), ('.', '.'), ('last', 'JJ'), ('Tuesday', 'NNP'), ('at', 'IN'), ('3:00', 'CD'), ('PM', 'NNP'), ('.', '.'), ('He', 'PRP'), ('spoke', 'VBD'), ('about', 'IN'), ('text-processing', 'NN'), (',', ','), ('running', 'VBG'), ('algorithms', 'NN'), (',', ','), ('and', 'CC'), ('how', 'WRB'), ('computers', 'NNS'), ('are', 'VBP'), ('learning', 'VBG'), ('beautifully', 'RB'), ('from', 'IN'), ('human', 'JJ'), ('data', 'NNS'), ('.', '.'), ('Are', 'VBP'), (\"n't\", 'RB'), ('these', 'DT'), ('technologies', 'NNS'), ('changing', 'VBG'), ('India', 'NNP'), ('rapidly', 'RB'), ('?', '.')]\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "print(\"Name: Aryan Pilwalkar UIN:231A016\")\n",
+        "nltk.help.upenn_tagset(\"DT\")\n",
+        "nltk.help.upenn_tagset(\"VBZ\")"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "odv-DPnPCCWM",
+        "outputId": "83474fb7-cf35-40ba-cc7d-78d881386496"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Name: Aryan Pilwalkar UIN:231A016\n",
+            "DT: determiner\n",
+            "    all an another any both del each either every half la many much nary\n",
+            "    neither no some such that the them these this those\n",
+            "VBZ: verb, present tense, 3rd person singular\n",
+            "    bases reconstructs marks mixes displeases seals carps weaves snatches\n",
+            "    slumps stretches authorizes smolders pictures emerges stockpiles\n",
+            "    seduces fizzes uses bolsters slaps speaks pleads ...\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "print(\"Name: Aryan Pilwalkar UIN:231A016\")\n",
+        "named_entities = ne_chunk(tagged_tokens)\n",
+        "print(named_entities)"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "RGLYq5k9CCc9",
+        "outputId": "fe9412c1-9a52-4e61-a975-e8a47a1dc803"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Name: Aryan Pilwalkar UIN:231A016\n",
+            "(S\n",
+            "  The/DT\n",
+            "  (ORGANIZATION Natural/NNP Language/NNP Toolkit/NNP)\n",
+            "  ,/,\n",
+            "  or/CC\n",
+            "  more/JJR\n",
+            "  commonly/RB\n",
+            "  (ORGANIZATION NLTK/NNP)\n",
+            "  ,/,\n",
+            "  is/VBZ\n",
+            "  a/DT\n",
+            "  wonderful/JJ\n",
+            "  suite/NN\n",
+            "  of/IN\n",
+            "  libraries/NNS\n",
+            "  for/IN\n",
+            "  (PERSON Python/NNP)\n",
+            "  !/.\n",
+            "  Dr./NNP\n",
+            "  (PERSON John/NNP Doe/NNP)\n",
+            "  ,/,\n",
+            "  an/DT\n",
+            "  expert/NN\n",
+            "  in/IN\n",
+            "  (GPE AI/NNP)\n",
+            "  ,/,\n",
+            "  visited/VBD\n",
+            "  M.I.T/NNP\n",
+            "  ./.\n",
+            "  last/JJ\n",
+            "  Tuesday/NNP\n",
+            "  at/IN\n",
+            "  3:00/CD\n",
+            "  PM/NNP\n",
+            "  ./.\n",
+            "  He/PRP\n",
+            "  spoke/VBD\n",
+            "  about/IN\n",
+            "  text-processing/NN\n",
+            "  ,/,\n",
+            "  running/VBG\n",
+            "  algorithms/NN\n",
+            "  ,/,\n",
+            "  and/CC\n",
+            "  how/WRB\n",
+            "  computers/NNS\n",
+            "  are/VBP\n",
+            "  learning/VBG\n",
+            "  beautifully/RB\n",
+            "  from/IN\n",
+            "  human/JJ\n",
+            "  data/NNS\n",
+            "  ./.\n",
+            "  Are/VBP\n",
+            "  n't/RB\n",
+            "  these/DT\n",
+            "  technologies/NNS\n",
+            "  changing/VBG\n",
+            "  (GPE India/NNP)\n",
+            "  rapidly/RB\n",
+            "  ?/.)\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "print(\"Name: Aryan Pilwalkar UIN:231A016\")\n",
+        "for subtree in named_entities:\n",
+        "  if isinstance(subtree,nltk.Tree):\n",
+        "    entity = \"\".join([word for word,tag in subtree.leaves()])\n",
+        "    label = subtree.label()\n",
+        "    print(f\"Entity:{entity}, Label: {label}\")"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "05QOSpdxCCis",
+        "outputId": "6242e737-2161-4e2a-8cd4-38073003d0a5"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Name: Aryan Pilwalkar UIN:231A016\n",
+            "Entity:NaturalLanguageToolkit, Label: ORGANIZATION\n",
+            "Entity:NLTK, Label: ORGANIZATION\n",
+            "Entity:Python, Label: PERSON\n",
+            "Entity:JohnDoe, Label: PERSON\n",
+            "Entity:AI, Label: GPE\n",
+            "Entity:India, Label: GPE\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "print(\"Name: Aryan Pilwalkar UIN:231A016\")\n",
+        "!pip install svgling --quiet"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "Gv0KBUyCCCos",
+        "outputId": "faebcb34-7f57-485c-9919-fa6f5211b50d"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Name: Aryan Pilwalkar UIN:231A016\n",
+            "\u001b[2K   \u001b[90m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\u001b[0m \u001b[32m67.1/67.1 kB\u001b[0m \u001b[31m7.7 MB/s\u001b[0m eta \u001b[36m0:00:00\u001b[0m\n",
+            "\u001b[?25h"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "print(\"Name: Aryan Pilwalkar UIN:231A016\")\n",
+        "named_entities = ne_chunk(tagged_tokens)\n",
+        "named_entities"
       ],
       "metadata": {
         "colab": {
           "base_uri": "https://localhost:8080/",
-          "height": 510
+          "height": 227
         },
-        "id": "DWGIqzbeMVWk",
-        "outputId": "15f21064-43f8-4eea-d638-fe5326a29656"
+        "id": "TdycE3H6CCuP",
+        "outputId": "7ea124be-af04-475b-9b50-691f0ed22312"
       },
       "execution_count": null,
       "outputs": [
         {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Name: Aryan Pilwalkar UIN:231A016\n"
+          ]
+        },
+        {
           "output_type": "execute_result",
           "data": {
             "text/plain": [
-              "                                                                                                                 Tweets  \\\n",
-              "0                          @beamiller I can't listen to your new album on youtube because it's blocked in my country :(   \n",
-              "1                Ah ma guy. You know the thing. \"@ceafive: the weather is set for more sleep but responsibilities. :-(\"   \n",
-              "2                                                             finding old pictures with my long hair makes me so sad :(   \n",
-              "3                                            @amerazjm FOLLOWED ME THANKS, AND\\n@justinbieber PLEASE FOLLOWED ME TOO :(   \n",
-              "4                                                                                                  @JackFejer thanks :)   \n",
-              "...                                                                                                                 ...   \n",
-              "9995                                                                          @AnnieIsDoomed its not my fault sweedy :(   \n",
-              "9996                Playing \"Give Your Heart A Break\" having memories from \"The Breakup\" episode :( I love the song tho   \n",
-              "9997                                                                                               Always motivated :-)   \n",
-              "9998                                          eric &amp; i made up and he still didn't tell me he loved me :-( fake ass   \n",
-              "9999  @LukeBryanOnline Yayyyy!!! I hope it's not while I am knocked out by anesthesia. I will be so sad if I miss it :(   \n",
-              "\n",
-              "     Sentiment  \\\n",
-              "0     Negative   \n",
-              "1     Negative   \n",
-              "2     Negative   \n",
-              "3     Negative   \n",
-              "4     Positive   \n",
-              "...        ...   \n",
-              "9995  Negative   \n",
-              "9996  Negative   \n",
-              "9997  Positive   \n",
-              "9998  Negative   \n",
-              "9999  Negative   \n",
-              "\n",
-              "                                                                 Processed Tweets  \n",
-              "0               [beamiller, can't, listen, new, album, youtube, blocked, country]  \n",
-              "1     [ah, guy, know, thing, ceafive, weather, set, sleep, responsibilities, :-(]  \n",
-              "2                                [finding, old, pictures, long, hair, makes, sad]  \n",
-              "3                    [amerazjm, followed, thanks, justinbieber, please, followed]  \n",
-              "4                                                             [jackfejer, thanks]  \n",
-              "...                                                                           ...  \n",
-              "9995                                               [annieisdoomed, fault, sweedy]  \n",
-              "9996   [playing, give, heart, break, memories, breakup, episode, love, song, tho]  \n",
-              "9997                                                     [always, motivated, :-)]  \n",
-              "9998                             [eric, made, still, tell, loved, :-(, fake, ass]  \n",
-              "9999               [lukebryanonline, yayyy, hope, knocked, anesthesia, sad, miss]  \n",
-              "\n",
-              "[10000 rows x 3 columns]"
+              "Tree('S', [('The', 'DT'), Tree('ORGANIZATION', [('Natural', 'NNP'), ('Language', 'NNP'), ('Toolkit', 'NNP')]), (',', ','), ('or', 'CC'), ('more', 'JJR'), ('commonly', 'RB'), Tree('ORGANIZATION', [('NLTK', 'NNP')]), (',', ','), ('is', 'VBZ'), ('a', 'DT'), ('wonderful', 'JJ'), ('suite', 'NN'), ('of', 'IN'), ('libraries', 'NNS'), ('for', 'IN'), Tree('PERSON', [('Python', 'NNP')]), ('!', '.'), ('Dr.', 'NNP'), Tree('PERSON', [('John', 'NNP'), ('Doe', 'NNP')]), (',', ','), ('an', 'DT'), ('expert', 'NN'), ('in', 'IN'), Tree('GPE', [('AI', 'NNP')]), (',', ','), ('visited', 'VBD'), ('M.I.T', 'NNP'), ('.', '.'), ('last', 'JJ'), ('Tuesday', 'NNP'), ('at', 'IN'), ('3:00', 'CD'), ('PM', 'NNP'), ('.', '.'), ('He', 'PRP'), ('spoke', 'VBD'), ('about', 'IN'), ('text-processing', 'NN'), (',', ','), ('running', 'VBG'), ('algorithms', 'NN'), (',', ','), ('and', 'CC'), ('how', 'WRB'), ('computers', 'NNS'), ('are', 'VBP'), ('learning', 'VBG'), ('beautifully', 'RB'), ('from', 'IN'), ('human', 'JJ'), ('data', 'NNS'), ('.', '.'), ('Are', 'VBP'), (\"n't\", 'RB'), ('these', 'DT'), ('technologies', 'NNS'), ('changing', 'VBG'), Tree('GPE', [('India', 'NNP')]), ('rapidly', 'RB'), ('?', '.')])"
             ],
-            "text/html": [
-              "\n",
-              "  <div id=\"df-096dc677-aa55-4fa8-a678-7b59f6792b76\" class=\"colab-df-container\">\n",
-              "    <div>\n",
-              "<style scoped>\n",
-              "    .dataframe tbody tr th:only-of-type {\n",
-              "        vertical-align: middle;\n",
-              "    }\n",
-              "\n",
-              "    .dataframe tbody tr th {\n",
-              "        vertical-align: top;\n",
-              "    }\n",
-              "\n",
-              "    .dataframe thead th {\n",
-              "        text-align: right;\n",
-              "    }\n",
-              "</style>\n",
-              "<table border=\"1\" class=\"dataframe\">\n",
-              "  <thead>\n",
-              "    <tr style=\"text-align: right;\">\n",
-              "      <th></th>\n",
-              "      <th>Tweets</th>\n",
-              "      <th>Sentiment</th>\n",
-              "      <th>Processed Tweets</th>\n",
-              "    </tr>\n",
-              "  </thead>\n",
-              "  <tbody>\n",
-              "    <tr>\n",
-              "      <th>0</th>\n",
-              "      <td>@beamiller I can't listen to your new album on youtube because it's blocked in my country :(</td>\n",
-              "      <td>Negative</td>\n",
-              "      <td>[beamiller, can't, listen, new, album, youtube, blocked, country]</td>\n",
-              "    </tr>\n",
-              "    <tr>\n",
-              "      <th>1</th>\n",
-              "      <td>Ah ma guy. You know the thing. \"@ceafive: the weather is set for more sleep but responsibilities. :-(\"</td>\n",
-              "      <td>Negative</td>\n",
-              "      <td>[ah, guy, know, thing, ceafive, weather, set, sleep, responsibilities, :-(]</td>\n",
-              "    </tr>\n",
-              "    <tr>\n",
-              "      <th>2</th>\n",
-              "      <td>finding old pictures with my long hair makes me so sad :(</td>\n",
-              "      <td>Negative</td>\n",
-              "      <td>[finding, old, pictures, long, hair, makes, sad]</td>\n",
-              "    </tr>\n",
-              "    <tr>\n",
-              "      <th>3</th>\n",
-              "      <td>@amerazjm FOLLOWED ME THANKS, AND\\n@justinbieber PLEASE FOLLOWED ME TOO :(</td>\n",
-              "      <td>Negative</td>\n",
-              "      <td>[amerazjm, followed, thanks, justinbieber, please, followed]</td>\n",
-              "    </tr>\n",
-              "    <tr>\n",
-              "      <th>4</th>\n",
-              "      <td>@JackFejer thanks :)</td>\n",
-              "      <td>Positive</td>\n",
-              "      <td>[jackfejer, thanks]</td>\n",
-              "    </tr>\n",
-              "    <tr>\n",
-              "      <th>...</th>\n",
-              "      <td>...</td>\n",
-              "      <td>...</td>\n",
-              "      <td>...</td>\n",
-              "    </tr>\n",
-              "    <tr>\n",
-              "      <th>9995</th>\n",
-              "      <td>@AnnieIsDoomed its not my fault sweedy :(</td>\n",
-              "      <td>Negative</td>\n",
-              "      <td>[annieisdoomed, fault, sweedy]</td>\n",
-              "    </tr>\n",
-              "    <tr>\n",
-              "      <th>9996</th>\n",
-              "      <td>Playing \"Give Your Heart A Break\" having memories from \"The Breakup\" episode :( I love the song tho</td>\n",
-              "      <td>Negative</td>\n",
-              "      <td>[playing, give, heart, break, memories, breakup, episode, love, song, tho]</td>\n",
-              "    </tr>\n",
-              "    <tr>\n",
-              "      <th>9997</th>\n",
-              "      <td>Always motivated :-)</td>\n",
-              "      <td>Positive</td>\n",
-              "      <td>[always, motivated, :-)]</td>\n",
-              "    </tr>\n",
-              "    <tr>\n",
-              "      <th>9998</th>\n",
-              "      <td>eric &amp;amp; i made up and he still didn't tell me he loved me :-( fake ass</td>\n",
-              "      <td>Negative</td>\n",
-              "      <td>[eric, made, still, tell, loved, :-(, fake, ass]</td>\n",
-              "    </tr>\n",
-              "    <tr>\n",
-              "      <th>9999</th>\n",
-              "      <td>@LukeBryanOnline Yayyyy!!! I hope it's not while I am knocked out by anesthesia. I will be so sad if I miss it :(</td>\n",
-              "      <td>Negative</td>\n",
-              "      <td>[lukebryanonline, yayyy, hope, knocked, anesthesia, sad, miss]</td>\n",
-              "    </tr>\n",
-              "  </tbody>\n",
-              "</table>\n",
-              "<p>10000 rows × 3 columns</p>\n",
-              "</div>\n",
-              "    <div class=\"colab-df-buttons\">\n",
-              "\n",
-              "  <div class=\"colab-df-container\">\n",
-              "    <button class=\"colab-df-convert\" onclick=\"convertToInteractive('df-096dc677-aa55-4fa8-a678-7b59f6792b76')\"\n",
-              "            title=\"Convert this dataframe to an interactive table.\"\n",
-              "            style=\"display:none;\">\n",
-              "\n",
-              "  <svg xmlns=\"http://www.w3.org/2000/svg\" height=\"24px\" viewBox=\"0 -960 960 960\">\n",
-              "    <path d=\"M120-120v-720h720v720H120Zm60-500h600v-160H180v160Zm220 220h160v-160H400v160Zm0 220h160v-160H400v160ZM180-400h160v-160H180v160Zm440 0h160v-160H620v160ZM180-180h160v-160H180v160Zm440 0h160v-160H620v160Z\"/>\n",
-              "  </svg>\n",
-              "    </button>\n",
-              "\n",
-              "  <style>\n",
-              "    .colab-df-container {\n",
-              "      display:flex;\n",
-              "      gap: 12px;\n",
-              "    }\n",
-              "\n",
-              "    .colab-df-convert {\n",
-              "      background-color: #E8F0FE;\n",
-              "      border: none;\n",
-              "      border-radius: 50%;\n",
-              "      cursor: pointer;\n",
-              "      display: none;\n",
-              "      fill: #1967D2;\n",
-              "      height: 32px;\n",
-              "      padding: 0 0 0 0;\n",
-              "      width: 32px;\n",
-              "    }\n",
-              "\n",
-              "    .colab-df-convert:hover {\n",
-              "      background-color: #E2EBFA;\n",
-              "      box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);\n",
-              "      fill: #174EA6;\n",
-              "    }\n",
-              "\n",
-              "    .colab-df-buttons div {\n",
-              "      margin-bottom: 4px;\n",
-              "    }\n",
-              "\n",
-              "    [theme=dark] .colab-df-convert {\n",
-              "      background-color: #3B4455;\n",
-              "      fill: #D2E3FC;\n",
-              "    }\n",
-              "\n",
-              "    [theme=dark] .colab-df-convert:hover {\n",
-              "      background-color: #434B5C;\n",
-              "      box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);\n",
-              "      filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));\n",
-              "      fill: #FFFFFF;\n",
-              "    }\n",
-              "  </style>\n",
-              "\n",
-              "    <script>\n",
-              "      const buttonEl =\n",
-              "        document.querySelector('#df-096dc677-aa55-4fa8-a678-7b59f6792b76 button.colab-df-convert');\n",
-              "      buttonEl.style.display =\n",
-              "        google.colab.kernel.accessAllowed ? 'block' : 'none';\n",
-              "\n",
-              "      async function convertToInteractive(key) {\n",
-              "        const element = document.querySelector('#df-096dc677-aa55-4fa8-a678-7b59f6792b76');\n",
-              "        const dataTable =\n",
-              "          await google.colab.kernel.invokeFunction('convertToInteractive',\n",
-              "                                                    [key], {});\n",
-              "        if (!dataTable) return;\n",
-              "\n",
-              "        const docLinkHtml = 'Like what you see? Visit the ' +\n",
-              "          '<a target=\"_blank\" href=https://colab.research.google.com/notebooks/data_table.ipynb>data table notebook</a>'\n",
-              "          + ' to learn more about interactive tables.';\n",
-              "        element.innerHTML = '';\n",
-              "        dataTable['output_type'] = 'display_data';\n",
-              "        await google.colab.output.renderOutput(dataTable, element);\n",
-              "        const docLink = document.createElement('div');\n",
-              "        docLink.innerHTML = docLinkHtml;\n",
-              "        element.appendChild(docLink);\n",
-              "      }\n",
-              "    </script>\n",
-              "  </div>\n",
-              "\n",
-              "\n",
-              "  <div id=\"id_bf6ce8ac-5ec7-47d1-bc70-e6f16ea0a9a9\">\n",
-              "    <style>\n",
-              "      .colab-df-generate {\n",
-              "        background-color: #E8F0FE;\n",
-              "        border: none;\n",
-              "        border-radius: 50%;\n",
-              "        cursor: pointer;\n",
-              "        display: none;\n",
-              "        fill: #1967D2;\n",
-              "        height: 32px;\n",
-              "        padding: 0 0 0 0;\n",
-              "        width: 32px;\n",
-              "      }\n",
-              "\n",
-              "      .colab-df-generate:hover {\n",
-              "        background-color: #E2EBFA;\n",
-              "        box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);\n",
-              "        fill: #174EA6;\n",
-              "      }\n",
-              "\n",
-              "      [theme=dark] .colab-df-generate {\n",
-              "        background-color: #3B4455;\n",
-              "        fill: #D2E3FC;\n",
-              "      }\n",
-              "\n",
-              "      [theme=dark] .colab-df-generate:hover {\n",
-              "        background-color: #434B5C;\n",
-              "        box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);\n",
-              "        filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));\n",
-              "        fill: #FFFFFF;\n",
-              "      }\n",
-              "    </style>\n",
-              "    <button class=\"colab-df-generate\" onclick=\"generateWithVariable('all_tweets_df')\"\n",
-              "            title=\"Generate code using this dataframe.\"\n",
-              "            style=\"display:none;\">\n",
-              "\n",
-              "  <svg xmlns=\"http://www.w3.org/2000/svg\" height=\"24px\"viewBox=\"0 0 24 24\"\n",
-              "       width=\"24px\">\n",
-              "    <path d=\"M7,19H8.4L18.45,9,17,7.55,7,17.6ZM5,21V16.75L18.45,3.32a2,2,0,0,1,2.83,0l1.4,1.43a1.91,1.91,0,0,1,.58,1.4,1.91,1.91,0,0,1-.58,1.4L9.25,21ZM18.45,9,17,7.55Zm-12,3A5.31,5.31,0,0,0,4.9,8.1,5.31,5.31,0,0,0,1,6.5,5.31,5.31,0,0,0,4.9,4.9,5.31,5.31,0,0,0,6.5,1,5.31,5.31,0,0,0,8.1,4.9,5.31,5.31,0,0,0,12,6.5,5.46,5.46,0,0,0,6.5,12Z\"/>\n",
-              "  </svg>\n",
-              "    </button>\n",
-              "    <script>\n",
-              "      (() => {\n",
-              "      const buttonEl =\n",
-              "        document.querySelector('#id_bf6ce8ac-5ec7-47d1-bc70-e6f16ea0a9a9 button.colab-df-generate');\n",
-              "      buttonEl.style.display =\n",
-              "        google.colab.kernel.accessAllowed ? 'block' : 'none';\n",
-              "\n",
-              "      buttonEl.onclick = () => {\n",
-              "        google.colab.notebook.generateWithVariable('all_tweets_df');\n",
-              "      }\n",
-              "      })();\n",
-              "    </script>\n",
-              "  </div>\n",
-              "\n",
-              "    </div>\n",
-              "  </div>\n"
-            ],
-            "application/vnd.google.colaboratory.intrinsic+json": {
-              "type": "dataframe",
-              "variable_name": "all_tweets_df",
-              "summary": "{\n  \"name\": \"all_tweets_df\",\n  \"rows\": 10000,\n  \"fields\": [\n    {\n      \"column\": \"Tweets\",\n      \"properties\": {\n        \"dtype\": \"string\",\n        \"num_unique_values\": 10000,\n        \"samples\": [\n          \"#Zayn_Come_Back_We_Miss_You &lt;3 &lt;3 :( SO MUCH @zaynmalik\",\n          \"@melfoster666 That's not true.\\nI can quit whenever I want to.\\n:D\",\n          \"@slaydrey where is this?? \\u2665\\u2665\\u2665 looks so relaxing :(\"\n        ],\n        \"semantic_type\": \"\",\n        \"description\": \"\"\n      }\n    },\n    {\n      \"column\": \"Sentiment\",\n      \"properties\": {\n        \"dtype\": \"category\",\n        \"num_unique_values\": 2,\n        \"samples\": [\n          \"Positive\",\n          \"Negative\"\n        ],\n        \"semantic_type\": \"\",\n        \"description\": \"\"\n      }\n    },\n    {\n      \"column\": \"Processed Tweets\",\n      \"properties\": {\n        \"dtype\": \"object\",\n        \"semantic_type\": \"\",\n        \"description\": \"\"\n      }\n    }\n  ]\n}"
-            }
+            "image/svg+xml": "<svg baseProfile=\"full\" height=\"168px\" preserveAspectRatio=\"xMidYMid meet\" style=\"font-family: times, serif; font-weight: normal; font-style: normal; font-size: 16px\" version=\"1.1\" viewBox=\"0,0,3360.0,168.0\" width=\"3360px\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:ev=\"http://www.w3.org/2001/xml-events\" xmlns:xlink=\"http://www.w3.org/1999/xlink\"><defs /><svg width=\"100%\" x=\"0\" y=\"0px\"><defs /><text text-anchor=\"middle\" x=\"50%\" y=\"16px\">S</text></svg><svg width=\"1.19048%\" x=\"0%\" y=\"48px\"><defs /><svg width=\"100%\" x=\"0\" y=\"0px\"><defs /><text text-anchor=\"middle\" x=\"50%\" y=\"16px\">The</text></svg><svg width=\"100%\" x=\"0%\" y=\"48px\"><defs /><svg width=\"100%\" x=\"0\" y=\"0px\"><defs /><text text-anchor=\"middle\" x=\"50%\" y=\"16px\">DT</text></svg></svg><line stroke=\"black\" x1=\"50%\" x2=\"50%\" y1=\"20px\" y2=\"48px\" /></svg><line stroke=\"black\" x1=\"50%\" x2=\"0.595238%\" y1=\"20px\" y2=\"48px\" /><svg width=\"6.66667%\" x=\"1.19048%\" y=\"48px\"><defs /><svg width=\"100%\" x=\"0\" y=\"0px\"><defs /><text text-anchor=\"middle\" x=\"50%\" y=\"16px\">ORGANIZATION</text></svg><svg width=\"32.1429%\" x=\"0%\" y=\"48px\"><defs /><svg width=\"100%\" x=\"0\" y=\"0px\"><defs /><text text-anchor=\"middle\" x=\"50%\" y=\"16px\">Natural</text></svg><svg width=\"100%\" x=\"0%\" y=\"48px\"><defs /><svg width=\"100%\" x=\"0\" y=\"0px\"><defs /><text text-anchor=\"middle\" x=\"50%\" y=\"16px\">NNP</text></svg></svg><line stroke=\"black\" x1=\"50%\" x2=\"50%\" y1=\"20px\" y2=\"48px\" /></svg><line stroke=\"black\" x1=\"50%\" x2=\"16.0714%\" y1=\"20px\" y2=\"48px\" /><svg width=\"35.7143%\" x=\"32.1429%\" y=\"48px\"><defs /><svg width=\"100%\" x=\"0\" y=\"0px\"><defs /><text text-anchor=\"middle\" x=\"50%\" y=\"16px\">Language</text></svg><svg width=\"100%\" x=\"0%\" y=\"48px\"><defs /><svg width=\"100%\" x=\"0\" y=\"0px\"><defs /><text text-anchor=\"middle\" x=\"50%\" y=\"16px\">NNP</text></svg></svg><line stroke=\"black\" x1=\"50%\" x2=\"50%\" y1=\"20px\" y2=\"48px\" /></svg><line stroke=\"black\" x1=\"50%\" x2=\"50%\" y1=\"20px\" y2=\"48px\" /><svg width=\"32.1429%\" x=\"67.8571%\" y=\"48px\"><defs /><svg width=\"100%\" x=\"0\" y=\"0px\"><defs /><text text-anchor=\"middle\" x=\"50%\" y=\"16px\">Toolkit</text></svg><svg width=\"100%\" x=\"0%\" y=\"48px\"><defs /><svg width=\"100%\" x=\"0\" y=\"0px\"><defs /><text text-anchor=\"middle\" x=\"50%\" y=\"16px\">NNP</text></svg></svg><line stroke=\"black\" x1=\"50%\" x2=\"50%\" y1=\"20px\" y2=\"48px\" /></svg><line stroke=\"black\" x1=\"50%\" x2=\"83.9286%\" y1=\"20px\" y2=\"48px\" /></svg><line stroke=\"black\" x1=\"50%\" x2=\"4.52381%\" y1=\"20px\" y2=\"48px\" /><svg width=\"0.714286%\" x=\"7.85714%\" y=\"48px\"><defs /><svg width=\"100%\" x=\"0\" y=\"0px\"><defs /><text text-anchor=\"middle\" x=\"50%\" y=\"16px\">,</text></svg><svg width=\"100%\" x=\"0%\" y=\"48px\"><defs /><svg width=\"100%\" x=\"0\" y=\"0px\"><defs /><text text-anchor=\"middle\" x=\"50%\" y=\"16px\">,</text></svg></svg><line stroke=\"black\" x1=\"50%\" x2=\"50%\" y1=\"20px\" y2=\"48px\" /></svg><line stroke=\"black\" x1=\"50%\" x2=\"8.21429%\" y1=\"20px\" y2=\"48px\" /><svg width=\"0.952381%\" x=\"8.57143%\" y=\"48px\"><defs /><svg width=\"100%\" x=\"0\" y=\"0px\"><defs /><text text-anchor=\"middle\" x=\"50%\" y=\"16px\">or</text></svg><svg width=\"100%\" x=\"0%\" y=\"48px\"><defs /><svg width=\"100%\" x=\"0\" y=\"0px\"><defs /><text text-anchor=\"middle\" x=\"50%\" y=\"16px\">CC</text></svg></svg><line stroke=\"black\" x1=\"50%\" x2=\"50%\" y1=\"20px\" y2=\"48px\" /></svg><line stroke=\"black\" x1=\"50%\" x2=\"9.04762%\" y1=\"20px\" y2=\"48px\" /><svg width=\"1.42857%\" x=\"9.52381%\" y=\"48px\"><defs /><svg width=\"100%\" x=\"0\" y=\"0px\"><defs /><text text-anchor=\"middle\" x=\"50%\" y=\"16px\">more</text></svg><svg width=\"100%\" x=\"0%\" y=\"48px\"><defs /><svg width=\"100%\" x=\"0\" y=\"0px\"><defs /><text text-anchor=\"middle\" x=\"50%\" y=\"16px\">JJR</text></svg></svg><line stroke=\"black\" x1=\"50%\" x2=\"50%\" y1=\"20px\" y2=\"48px\" /></svg><line stroke=\"black\" x1=\"50%\" x2=\"10.2381%\" y1=\"20px\" y2=\"48px\" /><svg width=\"2.38095%\" x=\"10.9524%\" y=\"48px\"><defs /><svg width=\"100%\" x=\"0\" y=\"0px\"><defs /><text text-anchor=\"middle\" x=\"50%\" y=\"16px\">commonly</text></svg><svg width=\"100%\" x=\"0%\" y=\"48px\"><defs /><svg width=\"100%\" x=\"0\" y=\"0px\"><defs /><text text-anchor=\"middle\" x=\"50%\" y=\"16px\">RB</text></svg></svg><line stroke=\"black\" x1=\"50%\" x2=\"50%\" y1=\"20px\" y2=\"48px\" /></svg><line stroke=\"black\" x1=\"50%\" x2=\"12.1429%\" y1=\"20px\" y2=\"48px\" /><svg width=\"3.33333%\" x=\"13.3333%\" y=\"48px\"><defs /><svg width=\"100%\" x=\"0\" y=\"0px\"><defs /><text text-anchor=\"middle\" x=\"50%\" y=\"16px\">ORGANIZATION</text></svg><svg width=\"100%\" x=\"0%\" y=\"48px\"><defs /><svg width=\"100%\" x=\"0\" y=\"0px\"><defs /><text text-anchor=\"middle\" x=\"50%\" y=\"16px\">NLTK</text></svg><svg width=\"100%\" x=\"0%\" y=\"48px\"><defs /><svg width=\"100%\" x=\"0\" y=\"0px\"><defs /><text text-anchor=\"middle\" x=\"50%\" y=\"16px\">NNP</text></svg></svg><line stroke=\"black\" x1=\"50%\" x2=\"50%\" y1=\"20px\" y2=\"48px\" /></svg><line stroke=\"black\" x1=\"50%\" x2=\"50%\" y1=\"20px\" y2=\"48px\" /></svg><line stroke=\"black\" x1=\"50%\" x2=\"15%\" y1=\"20px\" y2=\"48px\" /><svg width=\"0.714286%\" x=\"16.6667%\" y=\"48px\"><defs /><svg width=\"100%\" x=\"0\" y=\"0px\"><defs /><text text-anchor=\"middle\" x=\"50%\" y=\"16px\">,</text></svg><svg width=\"100%\" x=\"0%\" y=\"48px\"><defs /><svg width=\"100%\" x=\"0\" y=\"0px\"><defs /><text text-anchor=\"middle\" x=\"50%\" y=\"16px\">,</text></svg></svg><line stroke=\"black\" x1=\"50%\" x2=\"50%\" y1=\"20px\" y2=\"48px\" /></svg><line stroke=\"black\" x1=\"50%\" x2=\"17.0238%\" y1=\"20px\" y2=\"48px\" /><svg width=\"1.19048%\" x=\"17.381%\" y=\"48px\"><defs /><svg width=\"100%\" x=\"0\" y=\"0px\"><defs /><text text-anchor=\"middle\" x=\"50%\" y=\"16px\">is</text></svg><svg width=\"100%\" x=\"0%\" y=\"48px\"><defs /><svg width=\"100%\" x=\"0\" y=\"0px\"><defs /><text text-anchor=\"middle\" x=\"50%\" y=\"16px\">VBZ</text></svg></svg><line stroke=\"black\" x1=\"50%\" x2=\"50%\" y1=\"20px\" y2=\"48px\" /></svg><line stroke=\"black\" x1=\"50%\" x2=\"17.9762%\" y1=\"20px\" y2=\"48px\" /><svg width=\"0.952381%\" x=\"18.5714%\" y=\"48px\"><defs /><svg width=\"100%\" x=\"0\" y=\"0px\"><defs /><text text-anchor=\"middle\" x=\"50%\" y=\"16px\">a</text></svg><svg width=\"100%\" x=\"0%\" y=\"48px\"><defs /><svg width=\"100%\" x=\"0\" y=\"0px\"><defs /><text text-anchor=\"middle\" x=\"50%\" y=\"16px\">DT</text></svg></svg><line stroke=\"black\" x1=\"50%\" x2=\"50%\" y1=\"20px\" y2=\"48px\" /></svg><line stroke=\"black\" x1=\"50%\" x2=\"19.0476%\" y1=\"20px\" y2=\"48px\" /><svg width=\"2.61905%\" x=\"19.5238%\" y=\"48px\"><defs /><svg width=\"100%\" x=\"0\" y=\"0px\"><defs /><text text-anchor=\"middle\" x=\"50%\" y=\"16px\">wonderful</text></svg><svg width=\"100%\" x=\"0%\" y=\"48px\"><defs /><svg width=\"100%\" x=\"0\" y=\"0px\"><defs /><text text-anchor=\"middle\" x=\"50%\" y=\"16px\">JJ</text></svg></svg><line stroke=\"black\" x1=\"50%\" x2=\"50%\" y1=\"20px\" y2=\"48px\" /></svg><line stroke=\"black\" x1=\"50%\" x2=\"20.8333%\" y1=\"20px\" y2=\"48px\" /><svg width=\"1.66667%\" x=\"22.1429%\" y=\"48px\"><defs /><svg width=\"100%\" x=\"0\" y=\"0px\"><defs /><text text-anchor=\"middle\" x=\"50%\" y=\"16px\">suite</text></svg><svg width=\"100%\" x=\"0%\" y=\"48px\"><defs /><svg width=\"100%\" x=\"0\" y=\"0px\"><defs /><text text-anchor=\"middle\" x=\"50%\" y=\"16px\">NN</text></svg></svg><line stroke=\"black\" x1=\"50%\" x2=\"50%\" y1=\"20px\" y2=\"48px\" /></svg><line stroke=\"black\" x1=\"50%\" x2=\"22.9762%\" y1=\"20px\" y2=\"48px\" /><svg width=\"0.952381%\" x=\"23.8095%\" y=\"48px\"><defs /><svg width=\"100%\" x=\"0\" y=\"0px\"><defs /><text text-anchor=\"middle\" x=\"50%\" y=\"16px\">of</text></svg><svg width=\"100%\" x=\"0%\" y=\"48px\"><defs /><svg width=\"100%\" x=\"0\" y=\"0px\"><defs /><text text-anchor=\"middle\" x=\"50%\" y=\"16px\">IN</text></svg></svg><line stroke=\"black\" x1=\"50%\" x2=\"50%\" y1=\"20px\" y2=\"48px\" /></svg><line stroke=\"black\" x1=\"50%\" x2=\"24.2857%\" y1=\"20px\" y2=\"48px\" /><svg width=\"2.61905%\" x=\"24.7619%\" y=\"48px\"><defs /><svg width=\"100%\" x=\"0\" y=\"0px\"><defs /><text text-anchor=\"middle\" x=\"50%\" y=\"16px\">libraries</text></svg><svg width=\"100%\" x=\"0%\" y=\"48px\"><defs /><svg width=\"100%\" x=\"0\" y=\"0px\"><defs /><text text-anchor=\"middle\" x=\"50%\" y=\"16px\">NNS</text></svg></svg><line stroke=\"black\" x1=\"50%\" x2=\"50%\" y1=\"20px\" y2=\"48px\" /></svg><line stroke=\"black\" x1=\"50%\" x2=\"26.0714%\" y1=\"20px\" y2=\"48px\" /><svg width=\"1.19048%\" x=\"27.381%\" y=\"48px\"><defs /><svg width=\"100%\" x=\"0\" y=\"0px\"><defs /><text text-anchor=\"middle\" x=\"50%\" y=\"16px\">for</text></svg><svg width=\"100%\" x=\"0%\" y=\"48px\"><defs /><svg width=\"100%\" x=\"0\" y=\"0px\"><defs /><text text-anchor=\"middle\" x=\"50%\" y=\"16px\">IN</text></svg></svg><line stroke=\"black\" x1=\"50%\" x2=\"50%\" y1=\"20px\" y2=\"48px\" /></svg><line stroke=\"black\" x1=\"50%\" x2=\"27.9762%\" y1=\"20px\" y2=\"48px\" /><svg width=\"1.90476%\" x=\"28.5714%\" y=\"48px\"><defs /><svg width=\"100%\" x=\"0\" y=\"0px\"><defs /><text text-anchor=\"middle\" x=\"50%\" y=\"16px\">PERSON</text></svg><svg width=\"100%\" x=\"0%\" y=\"48px\"><defs /><svg width=\"100%\" x=\"0\" y=\"0px\"><defs /><text text-anchor=\"middle\" x=\"50%\" y=\"16px\">Python</text></svg><svg width=\"100%\" x=\"0%\" y=\"48px\"><defs /><svg width=\"100%\" x=\"0\" y=\"0px\"><defs /><text text-anchor=\"middle\" x=\"50%\" y=\"16px\">NNP</text></svg></svg><line stroke=\"black\" x1=\"50%\" x2=\"50%\" y1=\"20px\" y2=\"48px\" /></svg><line stroke=\"black\" x1=\"50%\" x2=\"50%\" y1=\"20px\" y2=\"48px\" /></svg><line stroke=\"black\" x1=\"50%\" x2=\"29.5238%\" y1=\"20px\" y2=\"48px\" /><svg width=\"0.714286%\" x=\"30.4762%\" y=\"48px\"><defs /><svg width=\"100%\" x=\"0\" y=\"0px\"><defs /><text text-anchor=\"middle\" x=\"50%\" y=\"16px\">!</text></svg><svg width=\"100%\" x=\"0%\" y=\"48px\"><defs /><svg width=\"100%\" x=\"0\" y=\"0px\"><defs /><text text-anchor=\"middle\" x=\"50%\" y=\"16px\">.</text></svg></svg><line stroke=\"black\" x1=\"50%\" x2=\"50%\" y1=\"20px\" y2=\"48px\" /></svg><line stroke=\"black\" x1=\"50%\" x2=\"30.8333%\" y1=\"20px\" y2=\"48px\" /><svg width=\"1.19048%\" x=\"31.1905%\" y=\"48px\"><defs /><svg width=\"100%\" x=\"0\" y=\"0px\"><defs /><text text-anchor=\"middle\" x=\"50%\" y=\"16px\">Dr.</text></svg><svg width=\"100%\" x=\"0%\" y=\"48px\"><defs /><svg width=\"100%\" x=\"0\" y=\"0px\"><defs /><text text-anchor=\"middle\" x=\"50%\" y=\"16px\">NNP</text></svg></svg><line stroke=\"black\" x1=\"50%\" x2=\"50%\" y1=\"20px\" y2=\"48px\" /></svg><line stroke=\"black\" x1=\"50%\" x2=\"31.7857%\" y1=\"20px\" y2=\"48px\" /><svg width=\"2.61905%\" x=\"32.381%\" y=\"48px\"><defs /><svg width=\"100%\" x=\"0\" y=\"0px\"><defs /><text text-anchor=\"middle\" x=\"50%\" y=\"16px\">PERSON</text></svg><svg width=\"54.5455%\" x=\"0%\" y=\"48px\"><defs /><svg width=\"100%\" x=\"0\" y=\"0px\"><defs /><text text-anchor=\"middle\" x=\"50%\" y=\"16px\">John</text></svg><svg width=\"100%\" x=\"0%\" y=\"48px\"><defs /><svg width=\"100%\" x=\"0\" y=\"0px\"><defs /><text text-anchor=\"middle\" x=\"50%\" y=\"16px\">NNP</text></svg></svg><line stroke=\"black\" x1=\"50%\" x2=\"50%\" y1=\"20px\" y2=\"48px\" /></svg><line stroke=\"black\" x1=\"50%\" x2=\"27.2727%\" y1=\"20px\" y2=\"48px\" /><svg width=\"45.4545%\" x=\"54.5455%\" y=\"48px\"><defs /><svg width=\"100%\" x=\"0\" y=\"0px\"><defs /><text text-anchor=\"middle\" x=\"50%\" y=\"16px\">Doe</text></svg><svg width=\"100%\" x=\"0%\" y=\"48px\"><defs /><svg width=\"100%\" x=\"0\" y=\"0px\"><defs /><text text-anchor=\"middle\" x=\"50%\" y=\"16px\">NNP</text></svg></svg><line stroke=\"black\" x1=\"50%\" x2=\"50%\" y1=\"20px\" y2=\"48px\" /></svg><line stroke=\"black\" x1=\"50%\" x2=\"77.2727%\" y1=\"20px\" y2=\"48px\" /></svg><line stroke=\"black\" x1=\"50%\" x2=\"33.6905%\" y1=\"20px\" y2=\"48px\" /><svg width=\"0.714286%\" x=\"35%\" y=\"48px\"><defs /><svg width=\"100%\" x=\"0\" y=\"0px\"><defs /><text text-anchor=\"middle\" x=\"50%\" y=\"16px\">,</text></svg><svg width=\"100%\" x=\"0%\" y=\"48px\"><defs /><svg width=\"100%\" x=\"0\" y=\"0px\"><defs /><text text-anchor=\"middle\" x=\"50%\" y=\"16px\">,</text></svg></svg><line stroke=\"black\" x1=\"50%\" x2=\"50%\" y1=\"20px\" y2=\"48px\" /></svg><line stroke=\"black\" x1=\"50%\" x2=\"35.3571%\" y1=\"20px\" y2=\"48px\" /><svg width=\"0.952381%\" x=\"35.7143%\" y=\"48px\"><defs /><svg width=\"100%\" x=\"0\" y=\"0px\"><defs /><text text-anchor=\"middle\" x=\"50%\" y=\"16px\">an</text></svg><svg width=\"100%\" x=\"0%\" y=\"48px\"><defs /><svg width=\"100%\" x=\"0\" y=\"0px\"><defs /><text text-anchor=\"middle\" x=\"50%\" y=\"16px\">DT</text></svg></svg><line stroke=\"black\" x1=\"50%\" x2=\"50%\" y1=\"20px\" y2=\"48px\" /></svg><line stroke=\"black\" x1=\"50%\" x2=\"36.1905%\" y1=\"20px\" y2=\"48px\" /><svg width=\"1.90476%\" x=\"36.6667%\" y=\"48px\"><defs /><svg width=\"100%\" x=\"0\" y=\"0px\"><defs /><text text-anchor=\"middle\" x=\"50%\" y=\"16px\">expert</text></svg><svg width=\"100%\" x=\"0%\" y=\"48px\"><defs /><svg width=\"100%\" x=\"0\" y=\"0px\"><defs /><text text-anchor=\"middle\" x=\"50%\" y=\"16px\">NN</text></svg></svg><line stroke=\"black\" x1=\"50%\" x2=\"50%\" y1=\"20px\" y2=\"48px\" /></svg><line stroke=\"black\" x1=\"50%\" x2=\"37.619%\" y1=\"20px\" y2=\"48px\" /><svg width=\"0.952381%\" x=\"38.5714%\" y=\"48px\"><defs /><svg width=\"100%\" x=\"0\" y=\"0px\"><defs /><text text-anchor=\"middle\" x=\"50%\" y=\"16px\">in</text></svg><svg width=\"100%\" x=\"0%\" y=\"48px\"><defs /><svg width=\"100%\" x=\"0\" y=\"0px\"><defs /><text text-anchor=\"middle\" x=\"50%\" y=\"16px\">IN</text></svg></svg><line stroke=\"black\" x1=\"50%\" x2=\"50%\" y1=\"20px\" y2=\"48px\" /></svg><line stroke=\"black\" x1=\"50%\" x2=\"39.0476%\" y1=\"20px\" y2=\"48px\" /><svg width=\"1.19048%\" x=\"39.5238%\" y=\"48px\"><defs /><svg width=\"100%\" x=\"0\" y=\"0px\"><defs /><text text-anchor=\"middle\" x=\"50%\" y=\"16px\">GPE</text></svg><svg width=\"100%\" x=\"0%\" y=\"48px\"><defs /><svg width=\"100%\" x=\"0\" y=\"0px\"><defs /><text text-anchor=\"middle\" x=\"50%\" y=\"16px\">AI</text></svg><svg width=\"100%\" x=\"0%\" y=\"48px\"><defs /><svg width=\"100%\" x=\"0\" y=\"0px\"><defs /><text text-anchor=\"middle\" x=\"50%\" y=\"16px\">NNP</text></svg></svg><line stroke=\"black\" x1=\"50%\" x2=\"50%\" y1=\"20px\" y2=\"48px\" /></svg><line stroke=\"black\" x1=\"50%\" x2=\"50%\" y1=\"20px\" y2=\"48px\" /></svg><line stroke=\"black\" x1=\"50%\" x2=\"40.119%\" y1=\"20px\" y2=\"48px\" /><svg width=\"0.714286%\" x=\"40.7143%\" y=\"48px\"><defs /><svg width=\"100%\" x=\"0\" y=\"0px\"><defs /><text text-anchor=\"middle\" x=\"50%\" y=\"16px\">,</text></svg><svg width=\"100%\" x=\"0%\" y=\"48px\"><defs /><svg width=\"100%\" x=\"0\" y=\"0px\"><defs /><text text-anchor=\"middle\" x=\"50%\" y=\"16px\">,</text></svg></svg><line stroke=\"black\" x1=\"50%\" x2=\"50%\" y1=\"20px\" y2=\"48px\" /></svg><line stroke=\"black\" x1=\"50%\" x2=\"41.0714%\" y1=\"20px\" y2=\"48px\" /><svg width=\"2.14286%\" x=\"41.4286%\" y=\"48px\"><defs /><svg width=\"100%\" x=\"0\" y=\"0px\"><defs /><text text-anchor=\"middle\" x=\"50%\" y=\"16px\">visited</text></svg><svg width=\"100%\" x=\"0%\" y=\"48px\"><defs /><svg width=\"100%\" x=\"0\" y=\"0px\"><defs /><text text-anchor=\"middle\" x=\"50%\" y=\"16px\">VBD</text></svg></svg><line stroke=\"black\" x1=\"50%\" x2=\"50%\" y1=\"20px\" y2=\"48px\" /></svg><line stroke=\"black\" x1=\"50%\" x2=\"42.5%\" y1=\"20px\" y2=\"48px\" /><svg width=\"1.66667%\" x=\"43.5714%\" y=\"48px\"><defs /><svg width=\"100%\" x=\"0\" y=\"0px\"><defs /><text text-anchor=\"middle\" x=\"50%\" y=\"16px\">M.I.T</text></svg><svg width=\"100%\" x=\"0%\" y=\"48px\"><defs /><svg width=\"100%\" x=\"0\" y=\"0px\"><defs /><text text-anchor=\"middle\" x=\"50%\" y=\"16px\">NNP</text></svg></svg><line stroke=\"black\" x1=\"50%\" x2=\"50%\" y1=\"20px\" y2=\"48px\" /></svg><line stroke=\"black\" x1=\"50%\" x2=\"44.4048%\" y1=\"20px\" y2=\"48px\" /><svg width=\"0.714286%\" x=\"45.2381%\" y=\"48px\"><defs /><svg width=\"100%\" x=\"0\" y=\"0px\"><defs /><text text-anchor=\"middle\" x=\"50%\" y=\"16px\">.</text></svg><svg width=\"100%\" x=\"0%\" y=\"48px\"><defs /><svg width=\"100%\" x=\"0\" y=\"0px\"><defs /><text text-anchor=\"middle\" x=\"50%\" y=\"16px\">.</text></svg></svg><line stroke=\"black\" x1=\"50%\" x2=\"50%\" y1=\"20px\" y2=\"48px\" /></svg><line stroke=\"black\" x1=\"50%\" x2=\"45.5952%\" y1=\"20px\" y2=\"48px\" /><svg width=\"1.42857%\" x=\"45.9524%\" y=\"48px\"><defs /><svg width=\"100%\" x=\"0\" y=\"0px\"><defs /><text text-anchor=\"middle\" x=\"50%\" y=\"16px\">last</text></svg><svg width=\"100%\" x=\"0%\" y=\"48px\"><defs /><svg width=\"100%\" x=\"0\" y=\"0px\"><defs /><text text-anchor=\"middle\" x=\"50%\" y=\"16px\">JJ</text></svg></svg><line stroke=\"black\" x1=\"50%\" x2=\"50%\" y1=\"20px\" y2=\"48px\" /></svg><line stroke=\"black\" x1=\"50%\" x2=\"46.6667%\" y1=\"20px\" y2=\"48px\" /><svg width=\"2.14286%\" x=\"47.381%\" y=\"48px\"><defs /><svg width=\"100%\" x=\"0\" y=\"0px\"><defs /><text text-anchor=\"middle\" x=\"50%\" y=\"16px\">Tuesday</text></svg><svg width=\"100%\" x=\"0%\" y=\"48px\"><defs /><svg width=\"100%\" x=\"0\" y=\"0px\"><defs /><text text-anchor=\"middle\" x=\"50%\" y=\"16px\">NNP</text></svg></svg><line stroke=\"black\" x1=\"50%\" x2=\"50%\" y1=\"20px\" y2=\"48px\" /></svg><line stroke=\"black\" x1=\"50%\" x2=\"48.4524%\" y1=\"20px\" y2=\"48px\" /><svg width=\"0.952381%\" x=\"49.5238%\" y=\"48px\"><defs /><svg width=\"100%\" x=\"0\" y=\"0px\"><defs /><text text-anchor=\"middle\" x=\"50%\" y=\"16px\">at</text></svg><svg width=\"100%\" x=\"0%\" y=\"48px\"><defs /><svg width=\"100%\" x=\"0\" y=\"0px\"><defs /><text text-anchor=\"middle\" x=\"50%\" y=\"16px\">IN</text></svg></svg><line stroke=\"black\" x1=\"50%\" x2=\"50%\" y1=\"20px\" y2=\"48px\" /></svg><line stroke=\"black\" x1=\"50%\" x2=\"50%\" y1=\"20px\" y2=\"48px\" /><svg width=\"1.42857%\" x=\"50.4762%\" y=\"48px\"><defs /><svg width=\"100%\" x=\"0\" y=\"0px\"><defs /><text text-anchor=\"middle\" x=\"50%\" y=\"16px\">3:00</text></svg><svg width=\"100%\" x=\"0%\" y=\"48px\"><defs /><svg width=\"100%\" x=\"0\" y=\"0px\"><defs /><text text-anchor=\"middle\" x=\"50%\" y=\"16px\">CD</text></svg></svg><line stroke=\"black\" x1=\"50%\" x2=\"50%\" y1=\"20px\" y2=\"48px\" /></svg><line stroke=\"black\" x1=\"50%\" x2=\"51.1905%\" y1=\"20px\" y2=\"48px\" /><svg width=\"1.19048%\" x=\"51.9048%\" y=\"48px\"><defs /><svg width=\"100%\" x=\"0\" y=\"0px\"><defs /><text text-anchor=\"middle\" x=\"50%\" y=\"16px\">PM</text></svg><svg width=\"100%\" x=\"0%\" y=\"48px\"><defs /><svg width=\"100%\" x=\"0\" y=\"0px\"><defs /><text text-anchor=\"middle\" x=\"50%\" y=\"16px\">NNP</text></svg></svg><line stroke=\"black\" x1=\"50%\" x2=\"50%\" y1=\"20px\" y2=\"48px\" /></svg><line stroke=\"black\" x1=\"50%\" x2=\"52.5%\" y1=\"20px\" y2=\"48px\" /><svg width=\"0.714286%\" x=\"53.0952%\" y=\"48px\"><defs /><svg width=\"100%\" x=\"0\" y=\"0px\"><defs /><text text-anchor=\"middle\" x=\"50%\" y=\"16px\">.</text></svg><svg width=\"100%\" x=\"0%\" y=\"48px\"><defs /><svg width=\"100%\" x=\"0\" y=\"0px\"><defs /><text text-anchor=\"middle\" x=\"50%\" y=\"16px\">.</text></svg></svg><line stroke=\"black\" x1=\"50%\" x2=\"50%\" y1=\"20px\" y2=\"48px\" /></svg><line stroke=\"black\" x1=\"50%\" x2=\"53.4524%\" y1=\"20px\" y2=\"48px\" /><svg width=\"1.19048%\" x=\"53.8095%\" y=\"48px\"><defs /><svg width=\"100%\" x=\"0\" y=\"0px\"><defs /><text text-anchor=\"middle\" x=\"50%\" y=\"16px\">He</text></svg><svg width=\"100%\" x=\"0%\" y=\"48px\"><defs /><svg width=\"100%\" x=\"0\" y=\"0px\"><defs /><text text-anchor=\"middle\" x=\"50%\" y=\"16px\">PRP</text></svg></svg><line stroke=\"black\" x1=\"50%\" x2=\"50%\" y1=\"20px\" y2=\"48px\" /></svg><line stroke=\"black\" x1=\"50%\" x2=\"54.4048%\" y1=\"20px\" y2=\"48px\" /><svg width=\"1.66667%\" x=\"55%\" y=\"48px\"><defs /><svg width=\"100%\" x=\"0\" y=\"0px\"><defs /><text text-anchor=\"middle\" x=\"50%\" y=\"16px\">spoke</text></svg><svg width=\"100%\" x=\"0%\" y=\"48px\"><defs /><svg width=\"100%\" x=\"0\" y=\"0px\"><defs /><text text-anchor=\"middle\" x=\"50%\" y=\"16px\">VBD</text></svg></svg><line stroke=\"black\" x1=\"50%\" x2=\"50%\" y1=\"20px\" y2=\"48px\" /></svg><line stroke=\"black\" x1=\"50%\" x2=\"55.8333%\" y1=\"20px\" y2=\"48px\" /><svg width=\"1.66667%\" x=\"56.6667%\" y=\"48px\"><defs /><svg width=\"100%\" x=\"0\" y=\"0px\"><defs /><text text-anchor=\"middle\" x=\"50%\" y=\"16px\">about</text></svg><svg width=\"100%\" x=\"0%\" y=\"48px\"><defs /><svg width=\"100%\" x=\"0\" y=\"0px\"><defs /><text text-anchor=\"middle\" x=\"50%\" y=\"16px\">IN</text></svg></svg><line stroke=\"black\" x1=\"50%\" x2=\"50%\" y1=\"20px\" y2=\"48px\" /></svg><line stroke=\"black\" x1=\"50%\" x2=\"57.5%\" y1=\"20px\" y2=\"48px\" /><svg width=\"4.04762%\" x=\"58.3333%\" y=\"48px\"><defs /><svg width=\"100%\" x=\"0\" y=\"0px\"><defs /><text text-anchor=\"middle\" x=\"50%\" y=\"16px\">text-processing</text></svg><svg width=\"100%\" x=\"0%\" y=\"48px\"><defs /><svg width=\"100%\" x=\"0\" y=\"0px\"><defs /><text text-anchor=\"middle\" x=\"50%\" y=\"16px\">NN</text></svg></svg><line stroke=\"black\" x1=\"50%\" x2=\"50%\" y1=\"20px\" y2=\"48px\" /></svg><line stroke=\"black\" x1=\"50%\" x2=\"60.3571%\" y1=\"20px\" y2=\"48px\" /><svg width=\"0.714286%\" x=\"62.381%\" y=\"48px\"><defs /><svg width=\"100%\" x=\"0\" y=\"0px\"><defs /><text text-anchor=\"middle\" x=\"50%\" y=\"16px\">,</text></svg><svg width=\"100%\" x=\"0%\" y=\"48px\"><defs /><svg width=\"100%\" x=\"0\" y=\"0px\"><defs /><text text-anchor=\"middle\" x=\"50%\" y=\"16px\">,</text></svg></svg><line stroke=\"black\" x1=\"50%\" x2=\"50%\" y1=\"20px\" y2=\"48px\" /></svg><line stroke=\"black\" x1=\"50%\" x2=\"62.7381%\" y1=\"20px\" y2=\"48px\" /><svg width=\"2.14286%\" x=\"63.0952%\" y=\"48px\"><defs /><svg width=\"100%\" x=\"0\" y=\"0px\"><defs /><text text-anchor=\"middle\" x=\"50%\" y=\"16px\">running</text></svg><svg width=\"100%\" x=\"0%\" y=\"48px\"><defs /><svg width=\"100%\" x=\"0\" y=\"0px\"><defs /><text text-anchor=\"middle\" x=\"50%\" y=\"16px\">VBG</text></svg></svg><line stroke=\"black\" x1=\"50%\" x2=\"50%\" y1=\"20px\" y2=\"48px\" /></svg><line stroke=\"black\" x1=\"50%\" x2=\"64.1667%\" y1=\"20px\" y2=\"48px\" /><svg width=\"2.85714%\" x=\"65.2381%\" y=\"48px\"><defs /><svg width=\"100%\" x=\"0\" y=\"0px\"><defs /><text text-anchor=\"middle\" x=\"50%\" y=\"16px\">algorithms</text></svg><svg width=\"100%\" x=\"0%\" y=\"48px\"><defs /><svg width=\"100%\" x=\"0\" y=\"0px\"><defs /><text text-anchor=\"middle\" x=\"50%\" y=\"16px\">NN</text></svg></svg><line stroke=\"black\" x1=\"50%\" x2=\"50%\" y1=\"20px\" y2=\"48px\" /></svg><line stroke=\"black\" x1=\"50%\" x2=\"66.6667%\" y1=\"20px\" y2=\"48px\" /><svg width=\"0.714286%\" x=\"68.0952%\" y=\"48px\"><defs /><svg width=\"100%\" x=\"0\" y=\"0px\"><defs /><text text-anchor=\"middle\" x=\"50%\" y=\"16px\">,</text></svg><svg width=\"100%\" x=\"0%\" y=\"48px\"><defs /><svg width=\"100%\" x=\"0\" y=\"0px\"><defs /><text text-anchor=\"middle\" x=\"50%\" y=\"16px\">,</text></svg></svg><line stroke=\"black\" x1=\"50%\" x2=\"50%\" y1=\"20px\" y2=\"48px\" /></svg><line stroke=\"black\" x1=\"50%\" x2=\"68.4524%\" y1=\"20px\" y2=\"48px\" /><svg width=\"1.19048%\" x=\"68.8095%\" y=\"48px\"><defs /><svg width=\"100%\" x=\"0\" y=\"0px\"><defs /><text text-anchor=\"middle\" x=\"50%\" y=\"16px\">and</text></svg><svg width=\"100%\" x=\"0%\" y=\"48px\"><defs /><svg width=\"100%\" x=\"0\" y=\"0px\"><defs /><text text-anchor=\"middle\" x=\"50%\" y=\"16px\">CC</text></svg></svg><line stroke=\"black\" x1=\"50%\" x2=\"50%\" y1=\"20px\" y2=\"48px\" /></svg><line stroke=\"black\" x1=\"50%\" x2=\"69.4048%\" y1=\"20px\" y2=\"48px\" /><svg width=\"1.19048%\" x=\"70%\" y=\"48px\"><defs /><svg width=\"100%\" x=\"0\" y=\"0px\"><defs /><text text-anchor=\"middle\" x=\"50%\" y=\"16px\">how</text></svg><svg width=\"100%\" x=\"0%\" y=\"48px\"><defs /><svg width=\"100%\" x=\"0\" y=\"0px\"><defs /><text text-anchor=\"middle\" x=\"50%\" y=\"16px\">WRB</text></svg></svg><line stroke=\"black\" x1=\"50%\" x2=\"50%\" y1=\"20px\" y2=\"48px\" /></svg><line stroke=\"black\" x1=\"50%\" x2=\"70.5952%\" y1=\"20px\" y2=\"48px\" /><svg width=\"2.61905%\" x=\"71.1905%\" y=\"48px\"><defs /><svg width=\"100%\" x=\"0\" y=\"0px\"><defs /><text text-anchor=\"middle\" x=\"50%\" y=\"16px\">computers</text></svg><svg width=\"100%\" x=\"0%\" y=\"48px\"><defs /><svg width=\"100%\" x=\"0\" y=\"0px\"><defs /><text text-anchor=\"middle\" x=\"50%\" y=\"16px\">NNS</text></svg></svg><line stroke=\"black\" x1=\"50%\" x2=\"50%\" y1=\"20px\" y2=\"48px\" /></svg><line stroke=\"black\" x1=\"50%\" x2=\"72.5%\" y1=\"20px\" y2=\"48px\" /><svg width=\"1.19048%\" x=\"73.8095%\" y=\"48px\"><defs /><svg width=\"100%\" x=\"0\" y=\"0px\"><defs /><text text-anchor=\"middle\" x=\"50%\" y=\"16px\">are</text></svg><svg width=\"100%\" x=\"0%\" y=\"48px\"><defs /><svg width=\"100%\" x=\"0\" y=\"0px\"><defs /><text text-anchor=\"middle\" x=\"50%\" y=\"16px\">VBP</text></svg></svg><line stroke=\"black\" x1=\"50%\" x2=\"50%\" y1=\"20px\" y2=\"48px\" /></svg><line stroke=\"black\" x1=\"50%\" x2=\"74.4048%\" y1=\"20px\" y2=\"48px\" /><svg width=\"2.38095%\" x=\"75%\" y=\"48px\"><defs /><svg width=\"100%\" x=\"0\" y=\"0px\"><defs /><text text-anchor=\"middle\" x=\"50%\" y=\"16px\">learning</text></svg><svg width=\"100%\" x=\"0%\" y=\"48px\"><defs /><svg width=\"100%\" x=\"0\" y=\"0px\"><defs /><text text-anchor=\"middle\" x=\"50%\" y=\"16px\">VBG</text></svg></svg><line stroke=\"black\" x1=\"50%\" x2=\"50%\" y1=\"20px\" y2=\"48px\" /></svg><line stroke=\"black\" x1=\"50%\" x2=\"76.1905%\" y1=\"20px\" y2=\"48px\" /><svg width=\"3.09524%\" x=\"77.381%\" y=\"48px\"><defs /><svg width=\"100%\" x=\"0\" y=\"0px\"><defs /><text text-anchor=\"middle\" x=\"50%\" y=\"16px\">beautifully</text></svg><svg width=\"100%\" x=\"0%\" y=\"48px\"><defs /><svg width=\"100%\" x=\"0\" y=\"0px\"><defs /><text text-anchor=\"middle\" x=\"50%\" y=\"16px\">RB</text></svg></svg><line stroke=\"black\" x1=\"50%\" x2=\"50%\" y1=\"20px\" y2=\"48px\" /></svg><line stroke=\"black\" x1=\"50%\" x2=\"78.9286%\" y1=\"20px\" y2=\"48px\" /><svg width=\"1.42857%\" x=\"80.4762%\" y=\"48px\"><defs /><svg width=\"100%\" x=\"0\" y=\"0px\"><defs /><text text-anchor=\"middle\" x=\"50%\" y=\"16px\">from</text></svg><svg width=\"100%\" x=\"0%\" y=\"48px\"><defs /><svg width=\"100%\" x=\"0\" y=\"0px\"><defs /><text text-anchor=\"middle\" x=\"50%\" y=\"16px\">IN</text></svg></svg><line stroke=\"black\" x1=\"50%\" x2=\"50%\" y1=\"20px\" y2=\"48px\" /></svg><line stroke=\"black\" x1=\"50%\" x2=\"81.1905%\" y1=\"20px\" y2=\"48px\" /><svg width=\"1.66667%\" x=\"81.9048%\" y=\"48px\"><defs /><svg width=\"100%\" x=\"0\" y=\"0px\"><defs /><text text-anchor=\"middle\" x=\"50%\" y=\"16px\">human</text></svg><svg width=\"100%\" x=\"0%\" y=\"48px\"><defs /><svg width=\"100%\" x=\"0\" y=\"0px\"><defs /><text text-anchor=\"middle\" x=\"50%\" y=\"16px\">JJ</text></svg></svg><line stroke=\"black\" x1=\"50%\" x2=\"50%\" y1=\"20px\" y2=\"48px\" /></svg><line stroke=\"black\" x1=\"50%\" x2=\"82.7381%\" y1=\"20px\" y2=\"48px\" /><svg width=\"1.42857%\" x=\"83.5714%\" y=\"48px\"><defs /><svg width=\"100%\" x=\"0\" y=\"0px\"><defs /><text text-anchor=\"middle\" x=\"50%\" y=\"16px\">data</text></svg><svg width=\"100%\" x=\"0%\" y=\"48px\"><defs /><svg width=\"100%\" x=\"0\" y=\"0px\"><defs /><text text-anchor=\"middle\" x=\"50%\" y=\"16px\">NNS</text></svg></svg><line stroke=\"black\" x1=\"50%\" x2=\"50%\" y1=\"20px\" y2=\"48px\" /></svg><line stroke=\"black\" x1=\"50%\" x2=\"84.2857%\" y1=\"20px\" y2=\"48px\" /><svg width=\"0.714286%\" x=\"85%\" y=\"48px\"><defs /><svg width=\"100%\" x=\"0\" y=\"0px\"><defs /><text text-anchor=\"middle\" x=\"50%\" y=\"16px\">.</text></svg><svg width=\"100%\" x=\"0%\" y=\"48px\"><defs /><svg width=\"100%\" x=\"0\" y=\"0px\"><defs /><text text-anchor=\"middle\" x=\"50%\" y=\"16px\">.</text></svg></svg><line stroke=\"black\" x1=\"50%\" x2=\"50%\" y1=\"20px\" y2=\"48px\" /></svg><line stroke=\"black\" x1=\"50%\" x2=\"85.3571%\" y1=\"20px\" y2=\"48px\" /><svg width=\"1.19048%\" x=\"85.7143%\" y=\"48px\"><defs /><svg width=\"100%\" x=\"0\" y=\"0px\"><defs /><text text-anchor=\"middle\" x=\"50%\" y=\"16px\">Are</text></svg><svg width=\"100%\" x=\"0%\" y=\"48px\"><defs /><svg width=\"100%\" x=\"0\" y=\"0px\"><defs /><text text-anchor=\"middle\" x=\"50%\" y=\"16px\">VBP</text></svg></svg><line stroke=\"black\" x1=\"50%\" x2=\"50%\" y1=\"20px\" y2=\"48px\" /></svg><line stroke=\"black\" x1=\"50%\" x2=\"86.3095%\" y1=\"20px\" y2=\"48px\" /><svg width=\"1.19048%\" x=\"86.9048%\" y=\"48px\"><defs /><svg width=\"100%\" x=\"0\" y=\"0px\"><defs /><text text-anchor=\"middle\" x=\"50%\" y=\"16px\">n't</text></svg><svg width=\"100%\" x=\"0%\" y=\"48px\"><defs /><svg width=\"100%\" x=\"0\" y=\"0px\"><defs /><text text-anchor=\"middle\" x=\"50%\" y=\"16px\">RB</text></svg></svg><line stroke=\"black\" x1=\"50%\" x2=\"50%\" y1=\"20px\" y2=\"48px\" /></svg><line stroke=\"black\" x1=\"50%\" x2=\"87.5%\" y1=\"20px\" y2=\"48px\" /><svg width=\"1.66667%\" x=\"88.0952%\" y=\"48px\"><defs /><svg width=\"100%\" x=\"0\" y=\"0px\"><defs /><text text-anchor=\"middle\" x=\"50%\" y=\"16px\">these</text></svg><svg width=\"100%\" x=\"0%\" y=\"48px\"><defs /><svg width=\"100%\" x=\"0\" y=\"0px\"><defs /><text text-anchor=\"middle\" x=\"50%\" y=\"16px\">DT</text></svg></svg><line stroke=\"black\" x1=\"50%\" x2=\"50%\" y1=\"20px\" y2=\"48px\" /></svg><line stroke=\"black\" x1=\"50%\" x2=\"88.9286%\" y1=\"20px\" y2=\"48px\" /><svg width=\"3.33333%\" x=\"89.7619%\" y=\"48px\"><defs /><svg width=\"100%\" x=\"0\" y=\"0px\"><defs /><text text-anchor=\"middle\" x=\"50%\" y=\"16px\">technologies</text></svg><svg width=\"100%\" x=\"0%\" y=\"48px\"><defs /><svg width=\"100%\" x=\"0\" y=\"0px\"><defs /><text text-anchor=\"middle\" x=\"50%\" y=\"16px\">NNS</text></svg></svg><line stroke=\"black\" x1=\"50%\" x2=\"50%\" y1=\"20px\" y2=\"48px\" /></svg><line stroke=\"black\" x1=\"50%\" x2=\"91.4286%\" y1=\"20px\" y2=\"48px\" /><svg width=\"2.38095%\" x=\"93.0952%\" y=\"48px\"><defs /><svg width=\"100%\" x=\"0\" y=\"0px\"><defs /><text text-anchor=\"middle\" x=\"50%\" y=\"16px\">changing</text></svg><svg width=\"100%\" x=\"0%\" y=\"48px\"><defs /><svg width=\"100%\" x=\"0\" y=\"0px\"><defs /><text text-anchor=\"middle\" x=\"50%\" y=\"16px\">VBG</text></svg></svg><line stroke=\"black\" x1=\"50%\" x2=\"50%\" y1=\"20px\" y2=\"48px\" /></svg><line stroke=\"black\" x1=\"50%\" x2=\"94.2857%\" y1=\"20px\" y2=\"48px\" /><svg width=\"1.66667%\" x=\"95.4762%\" y=\"48px\"><defs /><svg width=\"100%\" x=\"0\" y=\"0px\"><defs /><text text-anchor=\"middle\" x=\"50%\" y=\"16px\">GPE</text></svg><svg width=\"100%\" x=\"0%\" y=\"48px\"><defs /><svg width=\"100%\" x=\"0\" y=\"0px\"><defs /><text text-anchor=\"middle\" x=\"50%\" y=\"16px\">India</text></svg><svg width=\"100%\" x=\"0%\" y=\"48px\"><defs /><svg width=\"100%\" x=\"0\" y=\"0px\"><defs /><text text-anchor=\"middle\" x=\"50%\" y=\"16px\">NNP</text></svg></svg><line stroke=\"black\" x1=\"50%\" x2=\"50%\" y1=\"20px\" y2=\"48px\" /></svg><line stroke=\"black\" x1=\"50%\" x2=\"50%\" y1=\"20px\" y2=\"48px\" /></svg><line stroke=\"black\" x1=\"50%\" x2=\"96.3095%\" y1=\"20px\" y2=\"48px\" /><svg width=\"2.14286%\" x=\"97.1429%\" y=\"48px\"><defs /><svg width=\"100%\" x=\"0\" y=\"0px\"><defs /><text text-anchor=\"middle\" x=\"50%\" y=\"16px\">rapidly</text></svg><svg width=\"100%\" x=\"0%\" y=\"48px\"><defs /><svg width=\"100%\" x=\"0\" y=\"0px\"><defs /><text text-anchor=\"middle\" x=\"50%\" y=\"16px\">RB</text></svg></svg><line stroke=\"black\" x1=\"50%\" x2=\"50%\" y1=\"20px\" y2=\"48px\" /></svg><line stroke=\"black\" x1=\"50%\" x2=\"98.2143%\" y1=\"20px\" y2=\"48px\" /><svg width=\"0.714286%\" x=\"99.2857%\" y=\"48px\"><defs /><svg width=\"100%\" x=\"0\" y=\"0px\"><defs /><text text-anchor=\"middle\" x=\"50%\" y=\"16px\">?</text></svg><svg width=\"100%\" x=\"0%\" y=\"48px\"><defs /><svg width=\"100%\" x=\"0\" y=\"0px\"><defs /><text text-anchor=\"middle\" x=\"50%\" y=\"16px\">.</text></svg></svg><line stroke=\"black\" x1=\"50%\" x2=\"50%\" y1=\"20px\" y2=\"48px\" /></svg><line stroke=\"black\" x1=\"50%\" x2=\"99.6429%\" y1=\"20px\" y2=\"48px\" /></svg>"
           },
           "metadata": {},
-          "execution_count": 28
+          "execution_count": 13
         }
       ]
     },
     {
       "cell_type": "code",
       "source": [
-        "all_processed_tweets = all_tweets_df[['Processed Tweets', 'Sentiment']]\n",
-        "all_processed_tweets"
+        "print(\"Name: Aryan Pilwalkar UIN:231A016\")\n",
+        "import spacy\n",
+        "\n",
+        "nlp = spacy.load(\"en_core_web_sm\")\n",
+        "\n",
+        "text = \"The Natural Language Toolkit, or more commonly NLTK, is a wonderful suite of libraries for Python! Dr. John Doe, an expert in AI, visited M.I.T. last Tuesday at 3:00 PM. He spoke about text-processing, running algorithms, and how computers are learning beautifully from human data. Aren't these technologies changing India rapidly?\"\n",
+        "\n",
+        "doc = nlp(text)\n",
+        "\n",
+        "for ent in doc.ents:\n",
+        "  print(f\"Entity:{ent.text},label:{ent.label_}\")"
       ],
       "metadata": {
         "colab": {
-          "base_uri": "https://localhost:8080/",
-          "height": 424
+          "base_uri": "https://localhost:8080/"
         },
-        "id": "0nF8PuNmNnx_",
-        "outputId": "e278ec9e-3f6e-4f30-e220-68289d58fc30"
+        "id": "o39Lu0hKCD7c",
+        "outputId": "e0197f14-363e-4814-f113-8199d91626ff"
       },
       "execution_count": null,
       "outputs": [
         {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Name: Aryan Pilwalkar UIN:231A016\n",
+            "Entity:The Natural Language Toolkit,label:ORG\n",
+            "Entity:NLTK,label:ORG\n",
+            "Entity:John Doe,label:PERSON\n",
+            "Entity:AI,label:GPE\n",
+            "Entity:last Tuesday,label:DATE\n",
+            "Entity:3:00 PM,label:TIME\n",
+            "Entity:India,label:GPE\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "#part 1\n"
+      ],
+      "metadata": {
+        "id": "ulIYGE7pJi0l"
+      }
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "print(\"Name: Aryan Pilwalkar UIN:231A016\")\n",
+        "import nltk\n",
+        "from nltk import pos_tag, word_tokenize\n",
+        "from nltk.chunk import RegexpParser"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "xWFc-6LaCEOc",
+        "outputId": "c3efd9ed-484e-4953-cd5e-4910c3fb3d0f"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Name: Aryan Pilwalkar UIN:231A016\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "print(\"Name: Aryan Pilwalkar UIN:231A016\")\n",
+        "sentence_1 = \"The quick brown fox jumps over the lazy dog\"\n",
+        "sentence_2 = \"This is the class of natural language processing.\""
+      ],
+      "metadata": {
+        "id": "EwyK3eEFJ09x",
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "outputId": "5559445d-d0b3-4c9a-c210-59de0ac202c6"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Name: Aryan Pilwalkar UIN:231A016\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "print(\"Name: Aryan Pilwalkar UIN:231A016\")\n",
+        "tokens = word_tokenize(sentence_2)\n",
+        "tagged = pos_tag(tokens)\n",
+        "tagged\n"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "7MPKAJHxJ23B",
+        "outputId": "467f0316-3cfb-4f21-e890-35a74bf600cf"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Name: Aryan Pilwalkar UIN:231A016\n"
+          ]
+        },
+        {
           "output_type": "execute_result",
           "data": {
             "text/plain": [
-              "                                                                 Processed Tweets  \\\n",
-              "0               [beamiller, can't, listen, new, album, youtube, blocked, country]   \n",
-              "1     [ah, guy, know, thing, ceafive, weather, set, sleep, responsibilities, :-(]   \n",
-              "2                                [finding, old, pictures, long, hair, makes, sad]   \n",
-              "3                    [amerazjm, followed, thanks, justinbieber, please, followed]   \n",
-              "4                                                             [jackfejer, thanks]   \n",
-              "...                                                                           ...   \n",
-              "9995                                               [annieisdoomed, fault, sweedy]   \n",
-              "9996   [playing, give, heart, break, memories, breakup, episode, love, song, tho]   \n",
-              "9997                                                     [always, motivated, :-)]   \n",
-              "9998                             [eric, made, still, tell, loved, :-(, fake, ass]   \n",
-              "9999               [lukebryanonline, yayyy, hope, knocked, anesthesia, sad, miss]   \n",
-              "\n",
-              "     Sentiment  \n",
-              "0     Negative  \n",
-              "1     Negative  \n",
-              "2     Negative  \n",
-              "3     Negative  \n",
-              "4     Positive  \n",
-              "...        ...  \n",
-              "9995  Negative  \n",
-              "9996  Negative  \n",
-              "9997  Positive  \n",
-              "9998  Negative  \n",
-              "9999  Negative  \n",
-              "\n",
-              "[10000 rows x 2 columns]"
-            ],
-            "text/html": [
-              "\n",
-              "  <div id=\"df-7a89400b-0dc8-4f6f-853b-752a549e75b0\" class=\"colab-df-container\">\n",
-              "    <div>\n",
-              "<style scoped>\n",
-              "    .dataframe tbody tr th:only-of-type {\n",
-              "        vertical-align: middle;\n",
-              "    }\n",
-              "\n",
-              "    .dataframe tbody tr th {\n",
-              "        vertical-align: top;\n",
-              "    }\n",
-              "\n",
-              "    .dataframe thead th {\n",
-              "        text-align: right;\n",
-              "    }\n",
-              "</style>\n",
-              "<table border=\"1\" class=\"dataframe\">\n",
-              "  <thead>\n",
-              "    <tr style=\"text-align: right;\">\n",
-              "      <th></th>\n",
-              "      <th>Processed Tweets</th>\n",
-              "      <th>Sentiment</th>\n",
-              "    </tr>\n",
-              "  </thead>\n",
-              "  <tbody>\n",
-              "    <tr>\n",
-              "      <th>0</th>\n",
-              "      <td>[beamiller, can't, listen, new, album, youtube, blocked, country]</td>\n",
-              "      <td>Negative</td>\n",
-              "    </tr>\n",
-              "    <tr>\n",
-              "      <th>1</th>\n",
-              "      <td>[ah, guy, know, thing, ceafive, weather, set, sleep, responsibilities, :-(]</td>\n",
-              "      <td>Negative</td>\n",
-              "    </tr>\n",
-              "    <tr>\n",
-              "      <th>2</th>\n",
-              "      <td>[finding, old, pictures, long, hair, makes, sad]</td>\n",
-              "      <td>Negative</td>\n",
-              "    </tr>\n",
-              "    <tr>\n",
-              "      <th>3</th>\n",
-              "      <td>[amerazjm, followed, thanks, justinbieber, please, followed]</td>\n",
-              "      <td>Negative</td>\n",
-              "    </tr>\n",
-              "    <tr>\n",
-              "      <th>4</th>\n",
-              "      <td>[jackfejer, thanks]</td>\n",
-              "      <td>Positive</td>\n",
-              "    </tr>\n",
-              "    <tr>\n",
-              "      <th>...</th>\n",
-              "      <td>...</td>\n",
-              "      <td>...</td>\n",
-              "    </tr>\n",
-              "    <tr>\n",
-              "      <th>9995</th>\n",
-              "      <td>[annieisdoomed, fault, sweedy]</td>\n",
-              "      <td>Negative</td>\n",
-              "    </tr>\n",
-              "    <tr>\n",
-              "      <th>9996</th>\n",
-              "      <td>[playing, give, heart, break, memories, breakup, episode, love, song, tho]</td>\n",
-              "      <td>Negative</td>\n",
-              "    </tr>\n",
-              "    <tr>\n",
-              "      <th>9997</th>\n",
-              "      <td>[always, motivated, :-)]</td>\n",
-              "      <td>Positive</td>\n",
-              "    </tr>\n",
-              "    <tr>\n",
-              "      <th>9998</th>\n",
-              "      <td>[eric, made, still, tell, loved, :-(, fake, ass]</td>\n",
-              "      <td>Negative</td>\n",
-              "    </tr>\n",
-              "    <tr>\n",
-              "      <th>9999</th>\n",
-              "      <td>[lukebryanonline, yayyy, hope, knocked, anesthesia, sad, miss]</td>\n",
-              "      <td>Negative</td>\n",
-              "    </tr>\n",
-              "  </tbody>\n",
-              "</table>\n",
-              "<p>10000 rows × 2 columns</p>\n",
-              "</div>\n",
-              "    <div class=\"colab-df-buttons\">\n",
-              "\n",
-              "  <div class=\"colab-df-container\">\n",
-              "    <button class=\"colab-df-convert\" onclick=\"convertToInteractive('df-7a89400b-0dc8-4f6f-853b-752a549e75b0')\"\n",
-              "            title=\"Convert this dataframe to an interactive table.\"\n",
-              "            style=\"display:none;\">\n",
-              "\n",
-              "  <svg xmlns=\"http://www.w3.org/2000/svg\" height=\"24px\" viewBox=\"0 -960 960 960\">\n",
-              "    <path d=\"M120-120v-720h720v720H120Zm60-500h600v-160H180v160Zm220 220h160v-160H400v160Zm0 220h160v-160H400v160ZM180-400h160v-160H180v160Zm440 0h160v-160H620v160ZM180-180h160v-160H180v160Zm440 0h160v-160H620v160Z\"/>\n",
-              "  </svg>\n",
-              "    </button>\n",
-              "\n",
-              "  <style>\n",
-              "    .colab-df-container {\n",
-              "      display:flex;\n",
-              "      gap: 12px;\n",
-              "    }\n",
-              "\n",
-              "    .colab-df-convert {\n",
-              "      background-color: #E8F0FE;\n",
-              "      border: none;\n",
-              "      border-radius: 50%;\n",
-              "      cursor: pointer;\n",
-              "      display: none;\n",
-              "      fill: #1967D2;\n",
-              "      height: 32px;\n",
-              "      padding: 0 0 0 0;\n",
-              "      width: 32px;\n",
-              "    }\n",
-              "\n",
-              "    .colab-df-convert:hover {\n",
-              "      background-color: #E2EBFA;\n",
-              "      box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);\n",
-              "      fill: #174EA6;\n",
-              "    }\n",
-              "\n",
-              "    .colab-df-buttons div {\n",
-              "      margin-bottom: 4px;\n",
-              "    }\n",
-              "\n",
-              "    [theme=dark] .colab-df-convert {\n",
-              "      background-color: #3B4455;\n",
-              "      fill: #D2E3FC;\n",
-              "    }\n",
-              "\n",
-              "    [theme=dark] .colab-df-convert:hover {\n",
-              "      background-color: #434B5C;\n",
-              "      box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);\n",
-              "      filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));\n",
-              "      fill: #FFFFFF;\n",
-              "    }\n",
-              "  </style>\n",
-              "\n",
-              "    <script>\n",
-              "      const buttonEl =\n",
-              "        document.querySelector('#df-7a89400b-0dc8-4f6f-853b-752a549e75b0 button.colab-df-convert');\n",
-              "      buttonEl.style.display =\n",
-              "        google.colab.kernel.accessAllowed ? 'block' : 'none';\n",
-              "\n",
-              "      async function convertToInteractive(key) {\n",
-              "        const element = document.querySelector('#df-7a89400b-0dc8-4f6f-853b-752a549e75b0');\n",
-              "        const dataTable =\n",
-              "          await google.colab.kernel.invokeFunction('convertToInteractive',\n",
-              "                                                    [key], {});\n",
-              "        if (!dataTable) return;\n",
-              "\n",
-              "        const docLinkHtml = 'Like what you see? Visit the ' +\n",
-              "          '<a target=\"_blank\" href=https://colab.research.google.com/notebooks/data_table.ipynb>data table notebook</a>'\n",
-              "          + ' to learn more about interactive tables.';\n",
-              "        element.innerHTML = '';\n",
-              "        dataTable['output_type'] = 'display_data';\n",
-              "        await google.colab.output.renderOutput(dataTable, element);\n",
-              "        const docLink = document.createElement('div');\n",
-              "        docLink.innerHTML = docLinkHtml;\n",
-              "        element.appendChild(docLink);\n",
-              "      }\n",
-              "    </script>\n",
-              "  </div>\n",
-              "\n",
-              "\n",
-              "  <div id=\"id_86a54f65-26fd-4afe-aee1-bcd57db27577\">\n",
-              "    <style>\n",
-              "      .colab-df-generate {\n",
-              "        background-color: #E8F0FE;\n",
-              "        border: none;\n",
-              "        border-radius: 50%;\n",
-              "        cursor: pointer;\n",
-              "        display: none;\n",
-              "        fill: #1967D2;\n",
-              "        height: 32px;\n",
-              "        padding: 0 0 0 0;\n",
-              "        width: 32px;\n",
-              "      }\n",
-              "\n",
-              "      .colab-df-generate:hover {\n",
-              "        background-color: #E2EBFA;\n",
-              "        box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);\n",
-              "        fill: #174EA6;\n",
-              "      }\n",
-              "\n",
-              "      [theme=dark] .colab-df-generate {\n",
-              "        background-color: #3B4455;\n",
-              "        fill: #D2E3FC;\n",
-              "      }\n",
-              "\n",
-              "      [theme=dark] .colab-df-generate:hover {\n",
-              "        background-color: #434B5C;\n",
-              "        box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);\n",
-              "        filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));\n",
-              "        fill: #FFFFFF;\n",
-              "      }\n",
-              "    </style>\n",
-              "    <button class=\"colab-df-generate\" onclick=\"generateWithVariable('all_processed_tweets')\"\n",
-              "            title=\"Generate code using this dataframe.\"\n",
-              "            style=\"display:none;\">\n",
-              "\n",
-              "  <svg xmlns=\"http://www.w3.org/2000/svg\" height=\"24px\"viewBox=\"0 0 24 24\"\n",
-              "       width=\"24px\">\n",
-              "    <path d=\"M7,19H8.4L18.45,9,17,7.55,7,17.6ZM5,21V16.75L18.45,3.32a2,2,0,0,1,2.83,0l1.4,1.43a1.91,1.91,0,0,1,.58,1.4,1.91,1.91,0,0,1-.58,1.4L9.25,21ZM18.45,9,17,7.55Zm-12,3A5.31,5.31,0,0,0,4.9,8.1,5.31,5.31,0,0,0,1,6.5,5.31,5.31,0,0,0,4.9,4.9,5.31,5.31,0,0,0,6.5,1,5.31,5.31,0,0,0,8.1,4.9,5.31,5.31,0,0,0,12,6.5,5.46,5.46,0,0,0,6.5,12Z\"/>\n",
-              "  </svg>\n",
-              "    </button>\n",
-              "    <script>\n",
-              "      (() => {\n",
-              "      const buttonEl =\n",
-              "        document.querySelector('#id_86a54f65-26fd-4afe-aee1-bcd57db27577 button.colab-df-generate');\n",
-              "      buttonEl.style.display =\n",
-              "        google.colab.kernel.accessAllowed ? 'block' : 'none';\n",
-              "\n",
-              "      buttonEl.onclick = () => {\n",
-              "        google.colab.notebook.generateWithVariable('all_processed_tweets');\n",
-              "      }\n",
-              "      })();\n",
-              "    </script>\n",
-              "  </div>\n",
-              "\n",
-              "    </div>\n",
-              "  </div>\n"
-            ],
-            "application/vnd.google.colaboratory.intrinsic+json": {
-              "type": "dataframe",
-              "variable_name": "all_processed_tweets",
-              "summary": "{\n  \"name\": \"all_processed_tweets\",\n  \"rows\": 10000,\n  \"fields\": [\n    {\n      \"column\": \"Processed Tweets\",\n      \"properties\": {\n        \"dtype\": \"object\",\n        \"semantic_type\": \"\",\n        \"description\": \"\"\n      }\n    },\n    {\n      \"column\": \"Sentiment\",\n      \"properties\": {\n        \"dtype\": \"category\",\n        \"num_unique_values\": 2,\n        \"samples\": [\n          \"Positive\",\n          \"Negative\"\n        ],\n        \"semantic_type\": \"\",\n        \"description\": \"\"\n      }\n    }\n  ]\n}"
-            }
+              "[('This', 'DT'),\n",
+              " ('is', 'VBZ'),\n",
+              " ('the', 'DT'),\n",
+              " ('class', 'NN'),\n",
+              " ('of', 'IN'),\n",
+              " ('natural', 'JJ'),\n",
+              " ('language', 'NN'),\n",
+              " ('processing', 'NN'),\n",
+              " ('.', '.')]"
+            ]
           },
           "metadata": {},
-          "execution_count": 30
+          "execution_count": 32
         }
       ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "print(\"Name: Aryan Pilwalkar UIN:231A016\")\n",
+        "grammer_1 = \"NP: {<DT>?<JJ>*<NN>}\""
+      ],
+      "metadata": {
+        "id": "b_sCpthfKPxc",
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "outputId": "f2348e02-c378-40d6-bc86-110793d84f96"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Name: Aryan Pilwalkar UIN:231A016\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "print(\"Name: Aryan Pilwalkar UIN:231A016\")\n",
+        "chunk_parser = RegexpParser(grammer_1)\n",
+        "chunked = chunk_parser.parse(tagged)\n",
+        "\n",
+        "print(chunked)"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "eQgUFz8fLNOB",
+        "outputId": "d8709518-251c-42e1-9dc9-cdbd0970c3bf"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Name: Aryan Pilwalkar UIN:231A016\n",
+            "(S\n",
+            "  This/DT\n",
+            "  is/VBZ\n",
+            "  (NP the/DT class/NN)\n",
+            "  of/IN\n",
+            "  (NP natural/JJ language/NN)\n",
+            "  (NP processing/NN)\n",
+            "  ./.)\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "print(\"Name: Aryan Pilwalkar UIN:231A016\")\n",
+        "from nltk.tree import Tree\n",
+        "import svgling\n",
+        "\n",
+        "# For displaying the chunked tree, we use svgling.draw_tree()\n",
+        "svgling.draw_tree(chunked)"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/",
+          "height": 207
+        },
+        "id": "BHaCxwXxMJs2",
+        "outputId": "63d70d24-4f2f-475a-e4de-b59d18983502"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Name: Aryan Pilwalkar UIN:231A016\n"
+          ]
+        },
+        {
+          "output_type": "execute_result",
+          "data": {
+            "text/plain": [
+              "TreeLayout(Tree('S', [('This', 'DT'), ('is', 'VBZ'), Tree('NP', [('the', 'DT'), ('class', 'NN')]), ('of', 'IN'), Tree('NP', [('natural', 'JJ'), ('language', 'NN')]), Tree('NP', [('processing', 'NN')]), ('.', '.')]))"
+            ],
+            "image/svg+xml": "<svg baseProfile=\"full\" height=\"168px\" preserveAspectRatio=\"xMidYMid meet\" style=\"font-family: times, serif; font-weight: normal; font-style: normal; font-size: 16px\" version=\"1.1\" viewBox=\"0,0,488.0,168.0\" width=\"488px\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:ev=\"http://www.w3.org/2001/xml-events\" xmlns:xlink=\"http://www.w3.org/1999/xlink\"><defs /><svg width=\"100%\" x=\"0\" y=\"0px\"><defs /><text text-anchor=\"middle\" x=\"50%\" y=\"16px\">S</text></svg><svg width=\"9.83607%\" x=\"0%\" y=\"48px\"><defs /><svg width=\"100%\" x=\"0\" y=\"0px\"><defs /><text text-anchor=\"middle\" x=\"50%\" y=\"16px\">This</text></svg><svg width=\"100%\" x=\"0%\" y=\"48px\"><defs /><svg width=\"100%\" x=\"0\" y=\"0px\"><defs /><text text-anchor=\"middle\" x=\"50%\" y=\"16px\">DT</text></svg></svg><line stroke=\"black\" x1=\"50%\" x2=\"50%\" y1=\"20px\" y2=\"48px\" /></svg><line stroke=\"black\" x1=\"50%\" x2=\"4.91803%\" y1=\"20px\" y2=\"48px\" /><svg width=\"8.19672%\" x=\"9.83607%\" y=\"48px\"><defs /><svg width=\"100%\" x=\"0\" y=\"0px\"><defs /><text text-anchor=\"middle\" x=\"50%\" y=\"16px\">is</text></svg><svg width=\"100%\" x=\"0%\" y=\"48px\"><defs /><svg width=\"100%\" x=\"0\" y=\"0px\"><defs /><text text-anchor=\"middle\" x=\"50%\" y=\"16px\">VBZ</text></svg></svg><line stroke=\"black\" x1=\"50%\" x2=\"50%\" y1=\"20px\" y2=\"48px\" /></svg><line stroke=\"black\" x1=\"50%\" x2=\"13.9344%\" y1=\"20px\" y2=\"48px\" /><svg width=\"19.6721%\" x=\"18.0328%\" y=\"48px\"><defs /><svg width=\"100%\" x=\"0\" y=\"0px\"><defs /><text text-anchor=\"middle\" x=\"50%\" y=\"16px\">NP</text></svg><svg width=\"41.6667%\" x=\"0%\" y=\"48px\"><defs /><svg width=\"100%\" x=\"0\" y=\"0px\"><defs /><text text-anchor=\"middle\" x=\"50%\" y=\"16px\">the</text></svg><svg width=\"100%\" x=\"0%\" y=\"48px\"><defs /><svg width=\"100%\" x=\"0\" y=\"0px\"><defs /><text text-anchor=\"middle\" x=\"50%\" y=\"16px\">DT</text></svg></svg><line stroke=\"black\" x1=\"50%\" x2=\"50%\" y1=\"20px\" y2=\"48px\" /></svg><line stroke=\"black\" x1=\"50%\" x2=\"20.8333%\" y1=\"20px\" y2=\"48px\" /><svg width=\"58.3333%\" x=\"41.6667%\" y=\"48px\"><defs /><svg width=\"100%\" x=\"0\" y=\"0px\"><defs /><text text-anchor=\"middle\" x=\"50%\" y=\"16px\">class</text></svg><svg width=\"100%\" x=\"0%\" y=\"48px\"><defs /><svg width=\"100%\" x=\"0\" y=\"0px\"><defs /><text text-anchor=\"middle\" x=\"50%\" y=\"16px\">NN</text></svg></svg><line stroke=\"black\" x1=\"50%\" x2=\"50%\" y1=\"20px\" y2=\"48px\" /></svg><line stroke=\"black\" x1=\"50%\" x2=\"70.8333%\" y1=\"20px\" y2=\"48px\" /></svg><line stroke=\"black\" x1=\"50%\" x2=\"27.8689%\" y1=\"20px\" y2=\"48px\" /><svg width=\"6.55738%\" x=\"37.7049%\" y=\"48px\"><defs /><svg width=\"100%\" x=\"0\" y=\"0px\"><defs /><text text-anchor=\"middle\" x=\"50%\" y=\"16px\">of</text></svg><svg width=\"100%\" x=\"0%\" y=\"48px\"><defs /><svg width=\"100%\" x=\"0\" y=\"0px\"><defs /><text text-anchor=\"middle\" x=\"50%\" y=\"16px\">IN</text></svg></svg><line stroke=\"black\" x1=\"50%\" x2=\"50%\" y1=\"20px\" y2=\"48px\" /></svg><line stroke=\"black\" x1=\"50%\" x2=\"40.9836%\" y1=\"20px\" y2=\"48px\" /><svg width=\"31.1475%\" x=\"44.2623%\" y=\"48px\"><defs /><svg width=\"100%\" x=\"0\" y=\"0px\"><defs /><text text-anchor=\"middle\" x=\"50%\" y=\"16px\">NP</text></svg><svg width=\"47.3684%\" x=\"0%\" y=\"48px\"><defs /><svg width=\"100%\" x=\"0\" y=\"0px\"><defs /><text text-anchor=\"middle\" x=\"50%\" y=\"16px\">natural</text></svg><svg width=\"100%\" x=\"0%\" y=\"48px\"><defs /><svg width=\"100%\" x=\"0\" y=\"0px\"><defs /><text text-anchor=\"middle\" x=\"50%\" y=\"16px\">JJ</text></svg></svg><line stroke=\"black\" x1=\"50%\" x2=\"50%\" y1=\"20px\" y2=\"48px\" /></svg><line stroke=\"black\" x1=\"50%\" x2=\"23.6842%\" y1=\"20px\" y2=\"48px\" /><svg width=\"52.6316%\" x=\"47.3684%\" y=\"48px\"><defs /><svg width=\"100%\" x=\"0\" y=\"0px\"><defs /><text text-anchor=\"middle\" x=\"50%\" y=\"16px\">language</text></svg><svg width=\"100%\" x=\"0%\" y=\"48px\"><defs /><svg width=\"100%\" x=\"0\" y=\"0px\"><defs /><text text-anchor=\"middle\" x=\"50%\" y=\"16px\">NN</text></svg></svg><line stroke=\"black\" x1=\"50%\" x2=\"50%\" y1=\"20px\" y2=\"48px\" /></svg><line stroke=\"black\" x1=\"50%\" x2=\"73.6842%\" y1=\"20px\" y2=\"48px\" /></svg><line stroke=\"black\" x1=\"50%\" x2=\"59.8361%\" y1=\"20px\" y2=\"48px\" /><svg width=\"19.6721%\" x=\"75.4098%\" y=\"48px\"><defs /><svg width=\"100%\" x=\"0\" y=\"0px\"><defs /><text text-anchor=\"middle\" x=\"50%\" y=\"16px\">NP</text></svg><svg width=\"100%\" x=\"0%\" y=\"48px\"><defs /><svg width=\"100%\" x=\"0\" y=\"0px\"><defs /><text text-anchor=\"middle\" x=\"50%\" y=\"16px\">processing</text></svg><svg width=\"100%\" x=\"0%\" y=\"48px\"><defs /><svg width=\"100%\" x=\"0\" y=\"0px\"><defs /><text text-anchor=\"middle\" x=\"50%\" y=\"16px\">NN</text></svg></svg><line stroke=\"black\" x1=\"50%\" x2=\"50%\" y1=\"20px\" y2=\"48px\" /></svg><line stroke=\"black\" x1=\"50%\" x2=\"50%\" y1=\"20px\" y2=\"48px\" /></svg><line stroke=\"black\" x1=\"50%\" x2=\"85.2459%\" y1=\"20px\" y2=\"48px\" /><svg width=\"4.91803%\" x=\"95.082%\" y=\"48px\"><defs /><svg width=\"100%\" x=\"0\" y=\"0px\"><defs /><text text-anchor=\"middle\" x=\"50%\" y=\"16px\">.</text></svg><svg width=\"100%\" x=\"0%\" y=\"48px\"><defs /><svg width=\"100%\" x=\"0\" y=\"0px\"><defs /><text text-anchor=\"middle\" x=\"50%\" y=\"16px\">.</text></svg></svg><line stroke=\"black\" x1=\"50%\" x2=\"50%\" y1=\"20px\" y2=\"48px\" /></svg><line stroke=\"black\" x1=\"50%\" x2=\"97.541%\" y1=\"20px\" y2=\"48px\" /></svg>"
+          },
+          "metadata": {},
+          "execution_count": 35
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "print(\"Name: Aryan Pilwalkar UIN:231A016\")\n",
+        "grammer_2 = \"VP: {<MD>?<VB.*><RB.*><VB.*>*}\"\n",
+        "chunk_parser = RegexpParser(grammer_2)\n",
+        "chunked1 = chunk_parser.parse(tagged)"
+      ],
+      "metadata": {
+        "id": "zwRn5VZcMVqE",
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "outputId": "cabc3c45-7a78-4130-9dcb-7212ebf75fa9"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Name: Aryan Pilwalkar UIN:231A016\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "print(\"Name: Aryan Pilwalkar UIN:231A016\")\n",
+        "print(chunked1)\n",
+        "import svgling\n",
+        "svgling.draw_tree(chunked1)"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/",
+          "height": 332
+        },
+        "id": "NHWelpyLkEGF",
+        "outputId": "a7a217db-7650-4cef-c098-2b27e387ac52"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Name: Aryan Pilwalkar UIN:231A016\n",
+            "(S\n",
+            "  This/DT\n",
+            "  is/VBZ\n",
+            "  the/DT\n",
+            "  class/NN\n",
+            "  of/IN\n",
+            "  natural/JJ\n",
+            "  language/NN\n",
+            "  processing/NN\n",
+            "  ./.)\n"
+          ]
+        },
+        {
+          "output_type": "execute_result",
+          "data": {
+            "text/plain": [
+              "TreeLayout(Tree('S', [('This', 'DT'), ('is', 'VBZ'), ('the', 'DT'), ('class', 'NN'), ('of', 'IN'), ('natural', 'JJ'), ('language', 'NN'), ('processing', 'NN'), ('.', '.')]))"
+            ],
+            "image/svg+xml": "<svg baseProfile=\"full\" height=\"120px\" preserveAspectRatio=\"xMidYMid meet\" style=\"font-family: times, serif; font-weight: normal; font-style: normal; font-size: 16px\" version=\"1.1\" viewBox=\"0,0,488.0,120.0\" width=\"488px\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:ev=\"http://www.w3.org/2001/xml-events\" xmlns:xlink=\"http://www.w3.org/1999/xlink\"><defs /><svg width=\"100%\" x=\"0\" y=\"0px\"><defs /><text text-anchor=\"middle\" x=\"50%\" y=\"16px\">S</text></svg><svg width=\"9.83607%\" x=\"0%\" y=\"48px\"><defs /><svg width=\"100%\" x=\"0\" y=\"0px\"><defs /><text text-anchor=\"middle\" x=\"50%\" y=\"16px\">This</text></svg><svg width=\"100%\" x=\"0%\" y=\"48px\"><defs /><svg width=\"100%\" x=\"0\" y=\"0px\"><defs /><text text-anchor=\"middle\" x=\"50%\" y=\"16px\">DT</text></svg></svg><line stroke=\"black\" x1=\"50%\" x2=\"50%\" y1=\"20px\" y2=\"48px\" /></svg><line stroke=\"black\" x1=\"50%\" x2=\"4.91803%\" y1=\"20px\" y2=\"48px\" /><svg width=\"8.19672%\" x=\"9.83607%\" y=\"48px\"><defs /><svg width=\"100%\" x=\"0\" y=\"0px\"><defs /><text text-anchor=\"middle\" x=\"50%\" y=\"16px\">is</text></svg><svg width=\"100%\" x=\"0%\" y=\"48px\"><defs /><svg width=\"100%\" x=\"0\" y=\"0px\"><defs /><text text-anchor=\"middle\" x=\"50%\" y=\"16px\">VBZ</text></svg></svg><line stroke=\"black\" x1=\"50%\" x2=\"50%\" y1=\"20px\" y2=\"48px\" /></svg><line stroke=\"black\" x1=\"50%\" x2=\"13.9344%\" y1=\"20px\" y2=\"48px\" /><svg width=\"8.19672%\" x=\"18.0328%\" y=\"48px\"><defs /><svg width=\"100%\" x=\"0\" y=\"0px\"><defs /><text text-anchor=\"middle\" x=\"50%\" y=\"16px\">the</text></svg><svg width=\"100%\" x=\"0%\" y=\"48px\"><defs /><svg width=\"100%\" x=\"0\" y=\"0px\"><defs /><text text-anchor=\"middle\" x=\"50%\" y=\"16px\">DT</text></svg></svg><line stroke=\"black\" x1=\"50%\" x2=\"50%\" y1=\"20px\" y2=\"48px\" /></svg><line stroke=\"black\" x1=\"50%\" x2=\"22.1311%\" y1=\"20px\" y2=\"48px\" /><svg width=\"11.4754%\" x=\"26.2295%\" y=\"48px\"><defs /><svg width=\"100%\" x=\"0\" y=\"0px\"><defs /><text text-anchor=\"middle\" x=\"50%\" y=\"16px\">class</text></svg><svg width=\"100%\" x=\"0%\" y=\"48px\"><defs /><svg width=\"100%\" x=\"0\" y=\"0px\"><defs /><text text-anchor=\"middle\" x=\"50%\" y=\"16px\">NN</text></svg></svg><line stroke=\"black\" x1=\"50%\" x2=\"50%\" y1=\"20px\" y2=\"48px\" /></svg><line stroke=\"black\" x1=\"50%\" x2=\"31.9672%\" y1=\"20px\" y2=\"48px\" /><svg width=\"6.55738%\" x=\"37.7049%\" y=\"48px\"><defs /><svg width=\"100%\" x=\"0\" y=\"0px\"><defs /><text text-anchor=\"middle\" x=\"50%\" y=\"16px\">of</text></svg><svg width=\"100%\" x=\"0%\" y=\"48px\"><defs /><svg width=\"100%\" x=\"0\" y=\"0px\"><defs /><text text-anchor=\"middle\" x=\"50%\" y=\"16px\">IN</text></svg></svg><line stroke=\"black\" x1=\"50%\" x2=\"50%\" y1=\"20px\" y2=\"48px\" /></svg><line stroke=\"black\" x1=\"50%\" x2=\"40.9836%\" y1=\"20px\" y2=\"48px\" /><svg width=\"14.7541%\" x=\"44.2623%\" y=\"48px\"><defs /><svg width=\"100%\" x=\"0\" y=\"0px\"><defs /><text text-anchor=\"middle\" x=\"50%\" y=\"16px\">natural</text></svg><svg width=\"100%\" x=\"0%\" y=\"48px\"><defs /><svg width=\"100%\" x=\"0\" y=\"0px\"><defs /><text text-anchor=\"middle\" x=\"50%\" y=\"16px\">JJ</text></svg></svg><line stroke=\"black\" x1=\"50%\" x2=\"50%\" y1=\"20px\" y2=\"48px\" /></svg><line stroke=\"black\" x1=\"50%\" x2=\"51.6393%\" y1=\"20px\" y2=\"48px\" /><svg width=\"16.3934%\" x=\"59.0164%\" y=\"48px\"><defs /><svg width=\"100%\" x=\"0\" y=\"0px\"><defs /><text text-anchor=\"middle\" x=\"50%\" y=\"16px\">language</text></svg><svg width=\"100%\" x=\"0%\" y=\"48px\"><defs /><svg width=\"100%\" x=\"0\" y=\"0px\"><defs /><text text-anchor=\"middle\" x=\"50%\" y=\"16px\">NN</text></svg></svg><line stroke=\"black\" x1=\"50%\" x2=\"50%\" y1=\"20px\" y2=\"48px\" /></svg><line stroke=\"black\" x1=\"50%\" x2=\"67.2131%\" y1=\"20px\" y2=\"48px\" /><svg width=\"19.6721%\" x=\"75.4098%\" y=\"48px\"><defs /><svg width=\"100%\" x=\"0\" y=\"0px\"><defs /><text text-anchor=\"middle\" x=\"50%\" y=\"16px\">processing</text></svg><svg width=\"100%\" x=\"0%\" y=\"48px\"><defs /><svg width=\"100%\" x=\"0\" y=\"0px\"><defs /><text text-anchor=\"middle\" x=\"50%\" y=\"16px\">NN</text></svg></svg><line stroke=\"black\" x1=\"50%\" x2=\"50%\" y1=\"20px\" y2=\"48px\" /></svg><line stroke=\"black\" x1=\"50%\" x2=\"85.2459%\" y1=\"20px\" y2=\"48px\" /><svg width=\"4.91803%\" x=\"95.082%\" y=\"48px\"><defs /><svg width=\"100%\" x=\"0\" y=\"0px\"><defs /><text text-anchor=\"middle\" x=\"50%\" y=\"16px\">.</text></svg><svg width=\"100%\" x=\"0%\" y=\"48px\"><defs /><svg width=\"100%\" x=\"0\" y=\"0px\"><defs /><text text-anchor=\"middle\" x=\"50%\" y=\"16px\">.</text></svg></svg><line stroke=\"black\" x1=\"50%\" x2=\"50%\" y1=\"20px\" y2=\"48px\" /></svg><line stroke=\"black\" x1=\"50%\" x2=\"97.541%\" y1=\"20px\" y2=\"48px\" /></svg>"
+          },
+          "metadata": {},
+          "execution_count": 38
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "nltk.help.upenn_tagset(\"MD*\")"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "PusdiQxIkVmF",
+        "outputId": "8c194758-31bf-431c-fa00-3c38b5bdea6e"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "MD: modal auxiliary\n",
+            "    can cannot could couldn't dare may might must need ought shall should\n",
+            "    shouldn't will would\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [],
+      "metadata": {
+        "id": "WKMbTZiVlmuy"
+      },
+      "execution_count": null,
+      "outputs": []
     }
   ]
 }
